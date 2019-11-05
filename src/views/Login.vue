@@ -52,7 +52,7 @@
                         // required: true,
                         trigger: 'blur',
                         // message:"验证码必填",
-                        validator:  (rules, value, callback) =>{
+                        validator:(rules, value, callback) =>{
                             console.log(rules);
                             console.log(value);
                             console.log(callback);

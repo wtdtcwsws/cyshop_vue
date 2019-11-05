@@ -22,6 +22,7 @@
         name: "Main",
         components:{
             nvabar:nvabar
+
         }
     }
 </script>
