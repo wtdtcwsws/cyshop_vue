@@ -7,7 +7,7 @@
 
 <script>
     // @ is an alias to /src
-    import abc from '@/components/AddButton--添加按钮.vue'
+    import abc from '@/components/ReturnButton--返回按钮.vue'
 
     export default {
         name: 'liuzhi',
