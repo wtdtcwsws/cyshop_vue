@@ -39,6 +39,11 @@ export default new Router({
           component:()=>import('./views/Main'),
           children:[
               {
+                  name:'zhy',
+                  path:'/zhy',
+                  component:()=>import('./views/Zhy')
+              },
+              {
                   name:'home',
                   path:'/home',
                   component:()=>import('./views/Home')
