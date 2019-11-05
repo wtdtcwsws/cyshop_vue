@@ -33,6 +33,7 @@ export default new Router({
           path:'/login',
           component:()=>import('./views/Login')
       },
+
       {
           name:'Index',
           path:'/index',
@@ -47,6 +48,15 @@ export default new Router({
                   name:'about',
                   path:'/about',
                   component:()=>import('./views/About')
+              },
+              {
+                  name:'table',
+                  path:'/table',
+                  component:()=>import('./views/Table')
+              },{
+                  name:'wutong',
+                  path:'/wutong',
+                  component:()=>import('./views/WuTong')
               },
               {
                   name:'table',
