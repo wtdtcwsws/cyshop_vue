@@ -1,7 +1,7 @@
 <template>
     <div>
         <el-form-item :label=fItem.label >
-            <el-radio :name=fItem.name v-for='(n,i) in items' v-model="radio" :label="i">{{n.name}}</el-radio>
+            <el-radio  :name=fItem.name v-for='(n,i) in items' :key="i" v-model="radio" :label="i">{{n.name}}</el-radio>
         </el-form-item>
     </div>
 
