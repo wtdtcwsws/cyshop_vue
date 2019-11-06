@@ -53,16 +53,23 @@ export default new Router({
                     name: 'table',
                     path: '/table',
                     component: () => import('./views/Table')
-                }, {
-                    name: 'liuzhi',
-                    path: '/liuzhi',
-                    component: () => import('./views/liuzhi')
-                },
-                {
-                    name: 'wutong',
-                    path: '/wutong',
-                    component: () => import('./views/WuTong')
-                },
+                }
+                // , {
+                //     name: 'liuzhi',
+                //     path: '/liuzhi',
+                //     component: () => import('./views/liuzhi')
+                // },
+                // {
+                //     name: 'wutong',
+                //     path: '/wutong',
+                //     component: () => import('./views/WuTong')
+                // },
+                // {
+                //     name:'zhy',
+                //     path:'/zhy',
+                //     component:()=>import('./views/Zhy')
+                // }
+                ,
                 {
                     name: 'table',
                     path: '/table',
