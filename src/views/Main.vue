@@ -1,44 +1,70 @@
 <template>
-    <el-container>
+    <el-container style="height: 100%">
         <el-header>
-            <ul>
-                <li style="float: left">
+            <el-row :gutter="2">
+                <el-col :span="2">
                     <el-image
-                            style="width: 120px; height: 30px;"
+                            style="width: 120px; height: 60px;"
                             :src="url"
                             :fit="fit"></el-image>
-                </li>
-                <li style="float: left">
-                    <el-radio-group v-model="isCollapse">
-                        <el-radio-button :label="false"><i class="el-icon-s-fold"></i></el-radio-button>
-                        <el-radio-button :label="true"><i class="el-icon-s-unfold"></i></el-radio-button>
-                    </el-radio-group>
-                </li>
-                <li style="float: right">
+                </el-col>
+
+                <el-col :span="2">
+                    <div style="padding-top: 10px">
+                        <el-radio-group v-model="isCollapse">
+                            <el-radio-button :label="false"><i class="el-icon-s-fold"></i></el-radio-button>
+                            <el-radio-button :label="true"><i class="el-icon-s-unfold"></i></el-radio-button>
+                        </el-radio-group>
+                    </div>
+                </el-col>
+
+                <el-col :span="6">
+                    <div style="padding-top: 10px">
+                        <el-input
+                                placeholder="请输入内容"
+                                prefix-icon="el-icon-search"
+                                v-model="input2">
+                        </el-input>
+                    </div>
+                </el-col>
+
+                <el-col :span="12">
+                    <div style="padding-top: 14px;float: right" >
+                        xxxx早上好！今日天气：
+                    </div>
+                </el-col>
+
+                <el-col :span="2">
                     <headerdown></headerdown>
-                </li>
-            </ul>
+                </el-col>
+            </el-row>
         </el-header>
         <el-container>
-                <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
+            <div>
+                <el-menu default-active="1-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
                     <el-submenu index="1">
                         <template slot="title">
                             <i class="el-icon-location"></i>
                             <span slot="title">导航一</span>
                         </template>
+
                         <el-menu-item-group>
                             <span slot="title">分组一</span>
                             <el-menu-item index="1-1">选项1</el-menu-item>
                             <el-menu-item index="1-2">选项2</el-menu-item>
                         </el-menu-item-group>
-                        <el-menu-item-group title="分组2">
+
+                        <el-menu-item-group>
+                            <span slot="title">分组一</span>
                             <el-menu-item index="1-3">选项3</el-menu-item>
                         </el-menu-item-group>
+
                         <el-submenu index="1-4">
                             <span slot="title">选项4</span>
                             <el-menu-item index="1-4-1">选项1</el-menu-item>
                         </el-submenu>
                     </el-submenu>
+
                     <el-menu-item index="2">
                         <i class="el-icon-menu"></i>
                         <span slot="title">导航二</span>
@@ -51,7 +77,9 @@
                         <i class="el-icon-setting"></i>
                         <span slot="title">导航四</span>
                     </el-menu-item>
+
                 </el-menu>
+            </div>
 
             <el-container>
                 <el-main>
@@ -73,9 +101,7 @@
         },
         data() {
             return {
-                isCollapse: true,
-                fits:'fix',
-                url:'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+                isCollapse: true
             };
         },
         methods: {
@@ -103,15 +129,6 @@
         border-radius: 4px;
     }
 
-    ul {
-        list-style:none;
-        padding-inline-start: 0px;
-    }
-
-
-    li:hover {
-        background-color: #337ecc;
-    }
 
     .el-menu-vertical-demo:not(.el-menu--collapse) {
         width: 200px;
