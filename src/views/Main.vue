@@ -70,7 +70,6 @@
     export default {
         name: "Main",
         components:{
-            nvabar,
             headerdown
         },
         data() {
