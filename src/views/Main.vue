@@ -64,7 +64,6 @@
 </template>
 
 <script>
-    import nvabar from "@/components/NavMenu"
     import headerdown from "@/components/layout/header.vue"
 
     export default {
