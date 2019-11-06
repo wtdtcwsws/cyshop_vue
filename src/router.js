@@ -52,21 +52,23 @@ export default new Router({
                     name: 'table',
                     path: '/table',
                     component: () => import('./views/Table')
-                }, {
-                    name: 'liuzhi',
-                    path: '/liuzhi',
-                    component: () => import('./views/liuzhi')
-                },
-                {
-                    name: 'wutong',
-                    path: '/wutong',
-                    component: () => import('./views/WuTong')
-                },
-                {
-                    name:'zhy',
-                    path:'/zhy',
-                    component:()=>import('./views/Zhy')
-                },
+                }
+                // , {
+                //     name: 'liuzhi',
+                //     path: '/liuzhi',
+                //     component: () => import('./views/liuzhi')
+                // },
+                // {
+                //     name: 'wutong',
+                //     path: '/wutong',
+                //     component: () => import('./views/WuTong')
+                // },
+                // {
+                //     name:'zhy',
+                //     path:'/zhy',
+                //     component:()=>import('./views/Zhy')
+                // }
+                ,
                 {
                     name: 'table',
                     path: '/table',
@@ -79,6 +81,11 @@ export default new Router({
                     name: 'orderDetails',
                     path: '/orders/orderDetails',
                     component: () => import('./views/OrderDetails')
+                },
+                {
+                    name: 'catalog',
+                    path: '/goods/catalog',
+                    component: () => import('./views/goods/Catalog')
                 }
             ]
         }
