@@ -74,6 +74,11 @@ export default new Router({
                     name: 'table',
                     path: '/table',
                     component: () => import('./views/Table')
+                },
+                {
+                    name: 'catalog',
+                    path: '/goods/catalog',
+                    component: () => import('./views/goods/Catalog')
                 }
             ]
         }
