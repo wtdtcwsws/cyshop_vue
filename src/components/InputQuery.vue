@@ -4,7 +4,7 @@
             <el-input type="text" placeholder="请输入需要搜索的内容" maxlength="10" v-model="input"></el-input>
         </el-col>
         <el-col :span="2">
-            <el-button type="primary">{{buttonName}}</el-button>
+            <el-button type="primary">{{buttonName}} <i class="el-icon-plus"></i></el-button>
         </el-col>
     </el-row>
 

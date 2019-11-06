@@ -1,5 +1,19 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <el-switch v-model="value1"></el-switch>
+
   </div>
 </template>
+
+<script>
+
+    export default {
+        name: 'About',
+        data() {
+            return {
+                value1: true,
+
+            }
+        }
+    }
+</script>
