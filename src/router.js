@@ -77,23 +77,14 @@ export default new Router({
                 {
                     name: 'orderList',
                     path: '/orders/orderList',
-                    component: () => import('./views/orders/OrderList')
+                    component: () => import('./views/OrderList')
                 },
                 {
                     name: 'orderDetails',
                     path: '/orders/orderDetails',
-                    component: () => import('./views/orders/OrderDetails')
+                    component: () => import('./views/OrderDetails')
                 },
-                {
-                    name: 'refundList',
-                    path: '/orders/refundList',
-                    component: () => import('./views/orders/RefundList')
-                },
-                {
-                    name: 'refundDetails',
-                    path: '/orders/refundDetails',
-                    component: () => import('./views/orders/RefundDetails')
-                },
+
                 {
                     name: 'catalog',
                     path: '/goods/catalog',
@@ -101,17 +92,17 @@ export default new Router({
                 },
                 {
                     name:'MemberLevel',
-                    path:'/level',
+                    path:'/member/memberLevel',
                     component:()=>import('./views/member/MemberLevel')
                 },
                 {
                     name:'MemberList',
-                    path:'/member',
+                    path:'/member/memberList',
                     component:()=>import('./views/member/MemberList')
                 },
                 {
                     name:'CommodityStore',
-                    path:'/store',
+                    path:'/goods/commodityStore',
                     component:()=>import('./views/goods/CommodityStore'),
 
                 }]
