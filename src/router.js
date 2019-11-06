@@ -33,7 +33,6 @@ export default new Router({
             path: '/login',
             component: () => import('./views/Login')
         },
-
         {
             name: 'Index',
             path: '/index',
@@ -74,6 +73,12 @@ export default new Router({
                     name: 'table',
                     path: '/table',
                     component: () => import('./views/Table')
+                }
+                ,
+                {
+                    name: 'rolelist',
+                    path: '/rolelist',
+                    component: () => import('./views/role/RoleList')
                 }
             ]
         }

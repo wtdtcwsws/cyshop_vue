@@ -41,35 +41,33 @@
         </el-header>
         <el-container>
             <div>
-                <el-menu default-active="1-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
+                <el-menu default-active="1-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse"
+                         :router="true"
+                         :uniqueOpened="true">
+
                     <el-submenu index="1">
                         <template slot="title">
                             <i class="el-icon-location"></i>
                             <span slot="title">导航一</span>
                         </template>
-
                         <el-menu-item-group>
                             <span slot="title">分组一</span>
                             <el-menu-item index="1-1">选项1</el-menu-item>
                             <el-menu-item index="1-2">选项2</el-menu-item>
                         </el-menu-item-group>
-
-                        <el-menu-item-group>
-                            <span slot="title">分组一</span>
-                            <el-menu-item index="1-3"><router-link to="/table">表格</router-link></el-menu-item>
+                        <el-menu-item-group title="分组2">
+                            <el-menu-item index="1-3">选项3</el-menu-item>
                         </el-menu-item-group>
-
                         <el-submenu index="1-4">
-                            <span slot="title"><router-link to="/home">首页</router-link></span>
+                            <span slot="title">选项4</span>
                             <el-menu-item index="1-4-1">选项1</el-menu-item>
                         </el-submenu>
                     </el-submenu>
-
-                    <el-menu-item index="2">
+                    <el-menu-item index="home">
                         <i class="el-icon-menu"></i>
                         <span slot="title">导航二</span>
                     </el-menu-item>
-                    <el-menu-item index="3" disabled>
+                    <el-menu-item index="table" disabled>
                         <i class="el-icon-document"></i>
                         <span slot="title">导航三</span>
                     </el-menu-item>
@@ -101,7 +99,7 @@
         },
         data() {
             return {
-                isCollapse: true
+                isCollapse: false
             };
         },
         methods: {
