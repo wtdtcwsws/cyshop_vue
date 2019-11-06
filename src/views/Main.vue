@@ -83,7 +83,9 @@
 
             <el-container>
                 <el-main>
-                    <router-view/>
+                    <el-row :gutter="24">
+                        <el-col :span="22" :offset="1"><router-view/></el-col>
+                    </el-row>
                 </el-main>
                 <el-footer></el-footer>
             </el-container>
