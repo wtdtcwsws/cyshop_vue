@@ -1,5 +1,6 @@
 <template>
-    <div style="width: 500px;margin: 100px  auto">
+    <div style="width: 500px;margin: 100px  auto" class="query">
+        <cy-query-group></cy-query-group>
         <el-card class="box-card">
             <div slot="header" class="clearfix">
                 <span>登录</span>
