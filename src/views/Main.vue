@@ -147,7 +147,10 @@
         },
         data() {
             return {
-                isCollapse: false
+                isCollapse: true,
+                input2:"",
+                url:"",
+                fit:""
             };
         },
         methods: {

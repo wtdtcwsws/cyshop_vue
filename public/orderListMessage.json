@@ -1,22 +1,13 @@
 {
   "rows":[{
-    // 订单id
     "orderId":"1001",
-    // 买家账号
     "memberName":"小王",
-    // 收件人姓名
     "consigneeName":"小王",
-    // 订单价格
     "totalPrice":"2999",
-    // 邮费
     "postPrice":"10",
-    // 实际支付价格
     "payment":"3009",
-    // 订单状态
     "orderStatus":"待付款",
-    // 支付方式
     "paymentWay":"支付宝",
-    // 订单创建时间
     "createTime":"2019-11-06"
   },{
     "orderId":"1002",

@@ -12,33 +12,36 @@
             </el-col>
             <el-col :span="3" :offset="15">
                 <!--新增会员按钮-->
-                <el-button type="primary" icon="el-icon-plus" class="add-button" @click="dialogFormVisible = true">新增会员</el-button>
+                <el-button type="primary" icon="el-icon-plus" class="add-button" @click="dialogFormVisible = true">
+                    新增会员
+                </el-button>
 
                 <!--新增会员模态框内容-->
-                <el-dialog title="新增会员信息" :visible.sync="dialogFormVisible" class="modal-from" :close-on-click-modal="false">
+                <el-dialog title="新增会员信息" :visible.sync="dialogFormVisible" class="modal-from"
+                           :close-on-click-modal="false">
 
                     <el-form :model="form">
                         <el-col :span="22" :offset="5">
                             <el-form-item label="会员姓名">
-                                <el-input class="modal-input"></el-input>
+                                <el-input class="modal-input" v-model="form.name"></el-input>
                             </el-form-item>
                         </el-col>
 
                         <el-col :span="22" :offset="5">
                             <el-form-item label="会员账号">
-                                <el-input class="modal-input"></el-input>
+                                <el-input class="modal-input" v-model="form.account"></el-input>
                             </el-form-item>
                         </el-col>
 
                         <el-col :span="22" :offset="5">
                             <el-form-item label="会员密码">
-                                <el-input class="modal-input"></el-input>
+                                <el-input class="modal-input" v-model="form.password"></el-input>
                             </el-form-item>
                         </el-col>
 
                         <el-col :span="22" :offset="5">
                             <el-form-item label="联系方式">
-                                <el-input class="modal-input"></el-input>
+                                <el-input class="modal-input" v-model="form.phone"></el-input>
                             </el-form-item>
                         </el-col>
                     </el-form>
@@ -55,7 +58,7 @@
 
             <el-table-column prop="name" label="姓名" align="center" width="120"></el-table-column>
 
-            <el-table-column prop="level" label="会员等级" align="center" width="120"></el-table-column>
+            <el-table-column prop="levelId" label="会员等级" align="center" width="120"></el-table-column>
 
             <el-table-column prop="account" label="会员账号" align="center" width="180"></el-table-column>
 
@@ -63,10 +66,9 @@
 
             <el-table-column prop="phone" label="联系方式" align="center" width="180"></el-table-column>
 
-
             <el-table-column prop="status" label="会员状态" align="center" width="120">
                 <template slot-scope="scope">
-                    <el-switch v-model="scope.row.status" @change=change(scope.row)>
+                    <el-switch v-model="scope.row.status" @change=change(scope.row) active-value=1 inactive-value=0>
                     </el-switch>
                 </template>
             </el-table-column>
@@ -80,58 +82,50 @@
 </template>
 
 <script>
-
+    const axios = require('axios');
     export default {
         name: "MemberList",
         data() {
             return {
                 dialogFormVisible: false,
-                tableData: [{
-                    number: 'cy001',
-                    name: '王小虎',
-                    level: '一级用户',
-                    account: 'luohai123',
-                    password: '123456',
-                    phone: '1521008611',
-                    status: true,
-                    aa: 'luo',
-                    operation: ''
-                },{
-                    number: 'cy001',
-                    name: '王小虎',
-                    level: '一级用户',
-                    account: 'luohai123',
-                    password: '123456',
-                    phone: '1521008611',
-                    status: false,
-                    aa: 'qq',
-                    operation: ''
-                }]
+                tableData: []
             }
         },
-        methods:{
-            change(row){
+        mounted() {
+            this.ajax()
+        },
+        methods: {
+            change(row) {
                 console.log(row);
-            },
-            open(){
-                this.dialogFormVisible = false,
-                this.$message("您取消了操作！")
-            },
-            opens(){
-                this.dialogFormVisible = false,
-                this.$message("您新增了一位会员！")
-            }
 
+            },
+            open() {
+                this.dialogFormVisible = false,
+                    this.$message("您取消了操作！")
+            },
+            opens() {
+                this.dialogFormVisible = false,
+                    this.$message("您新增了一位会员！")
+            },
+            ajax() {
+                axios({
+                    url:'/api/memberList.vue',
+                    method: "get",
+                    responseType:"json",
+                    }).then((response) => {
+                    console.log(response.data);
+                    this.tableData = response.data;
+                })
+            }
+        },
+        watch: {
+            '$route': 'ajax'
         },
         form: {
             name: '',
-            region: '',
-            date1: '',
-            date2: '',
-            delivery: false,
-            type: [],
-            resource: '',
-            desc: ''
+            account: '',
+            password: '',
+            prhone: ''
         },
         formLabelWidth: '320px'
 
@@ -141,17 +135,20 @@
 
 <style scoped>
 
-    .top-row{
+    .top-row {
         margin-bottom: 10px;
         margin-top: 20px
     }
-    .add-button{
+
+    .add-button {
         width: 160px;
     }
-    .modal-input{
+
+    .modal-input {
         width: 300px;
     }
-    modal-from{
+
+    modal-from {
         margin-left: 50px;
     }
 

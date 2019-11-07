@@ -43,7 +43,7 @@
                 <el-table-column
                         label="操作">
                     <template slot-scope="scope">
-                        <el-button @click="handleClick(scope.$index, employees)" type="text" size="small">查看</el-button>
+                        <el-button @click="handleClick(scope.$index, employees[scope.$index].orderId)" type="text" size="small">查看</el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -84,6 +84,9 @@
         methods: {
             handleClick(index, employees) {
                 console.log(employees.slice(index,index+1));
+                this.$router.push({
+                    name:'refundDetails'
+                })
 
             },handleSizeChange(val) {
                 console.log(`每页 ${val} 条`);

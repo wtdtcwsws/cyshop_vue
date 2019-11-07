@@ -2,7 +2,7 @@
     <div>
         <el-row :gutter="20">
             <el-col :span="1">
-                <el-button type="info" icon="el-icon-back" circle></el-button>
+                <el-button type="info" icon="el-icon-back" circle @click="returnRefundList"></el-button>
             </el-col>
             <el-col :span="3">
                 <h2 style="margin: 5px">退货/款详情</h2>
@@ -73,7 +73,8 @@
                 </el-col>
                 <el-col :span="20">
                     <el-radio v-model="radio" label="1">审核通过</el-radio>
-                    <el-radio v-model="radio" label="2">拒绝通过</el-radio>
+                    <el-radio v-model="radio" label="2">撤销申请</el-radio>
+                    <el-radio v-model="radio" label="3">处理完成</el-radio>
                 </el-col>
             </el-row>
             <br/>
@@ -100,7 +101,7 @@
                     <label style="font-weight:bold;">&nbsp;</label>
                 </el-col>
                 <el-col :span="20">
-                    <el-button type="primary" @click="onSubmit">确认提交</el-button>
+                    <el-button type="primary" @click="onSubmit(radio,form.desc)">确认提交</el-button>
                 </el-col>
             </el-row>
         </el-form>
@@ -128,8 +129,18 @@
             '$route': 'ajax'
         },
         methods:{
-            onSubmit(){
-                console.log("去发货了");
+            onSubmit(radioResule,textMessage){
+                console.log(radioResule);
+                console.log(textMessage);
+                this.$message('已提交审核结果');
+                this.$router.push({
+                    name:"refundList"
+                })
+            },
+            returnRefundList(){
+                this.$router.push({
+                    name:"refundList"
+                })
             },
             ajax(){
                 let vm = this;

@@ -52,7 +52,6 @@
 <script>
     const axios = require('axios');
     export default {
-
         methods: {
             deleteRow(index, rows) {
                 rows.splice(index, 1);

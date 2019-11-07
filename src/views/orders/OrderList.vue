@@ -60,7 +60,7 @@
                         label="操作"
                         width="150">
                     <template slot-scope="scope">
-                        <el-button @click="handleClick(scope.$index, employees)" type="text" size="small">查看</el-button>
+                        <el-button @click="handleClick(scope.$index, employees[scope.$index].orderId)" type="text" size="small">查看</el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -99,10 +99,14 @@
             '$route': 'ajax'
         },
         methods: {
-            handleClick(index, employees) {
-                console.log(employees.slice(index,index+1));
-
-            },handleSizeChange(val) {
+            handleClick(index, a) {
+                console.log(a);
+                let vm1 = this;
+                vm1.$router.push({
+                    name:'orderDetails'
+                })
+            },
+            handleSizeChange(val) {
                 console.log(`每页 ${val} 条`);
             },
             handleCurrentChange(val) {
