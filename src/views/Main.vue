@@ -1,7 +1,7 @@
 <template>
-    <el-container style="height: 100%">
-        <el-header>
-            <el-row :gutter="2">
+    <el-container style="height: 100%;">
+        <el-header style="">
+            <el-row :gutter="2" >
                 <el-col :span="2">
                     <el-image
                             style="width: 120px; height: 60px;"
@@ -39,41 +39,87 @@
                 </el-col>
             </el-row>
         </el-header>
-        <el-container>
-            <div>
-                <el-menu default-active="1-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse"
+        <el-container >
+            <!--最底色-->
+            <div class="nav_bg" style="background-color: rgba(53,73,94,0.9)" >
+                <el-menu default-active="1-1" class="el-menu-vertical-demo " @open="handleOpen" @close="handleClose" :collapse="isCollapse"
                          :router="true"
-                         :uniqueOpened="true">
+                         active-text-color="red"
 
-                    <el-submenu index="1">
+                         :uniqueOpened="true" style="">
+
+
+
+                    <!--主页-->
+                    <el-menu-item index="/home" style="background-color: rgba(5,5,5,0.5)">
+                        <i class="el-icon-s-home" style="color: white"></i>
+                        <span slot="title" class="title_w">主页</span>
+                    </el-menu-item>
+
+                    <!--商品-->
+                    <el-submenu index="1" style="background-color: rgba(53,73,94,1)"  >
+                        <template slot="title" >
+                            <i class="el-icon-s-goods" style="color:white"></i>
+                            <span slot="title" style="color:white">商品管理</span>
+                        </template>
+                        <el-menu-item-group >
+                            <!--<span slot="title">分组一</span>-->
+                            <el-menu-item  index="/goods/Catalog" class="item_margin"><i class="el-icon-paperclip"></i>商品分类</el-menu-item>
+                            <el-menu-item index="/goods/CommodityStore" class="item_margin"><i class="el-icon-paperclip"></i>商品店铺</el-menu-item>
+                            <el-menu-item index="/goods/List" class="item_margin"><i class="el-icon-paperclip"></i>商品列表</el-menu-item>
+                            <el-menu-item index="/goods/Model" class="item_margin"><i class="el-icon-paperclip"></i>商品模型</el-menu-item>
+                        </el-menu-item-group>
+                    </el-submenu>
+
+                    <!--用户-->
+                    <el-submenu index="2" style="background-color:rgba(53,73,94,1);">
                         <template slot="title">
-                            <i class="el-icon-location"></i>
-                            <span slot="title">导航一</span>
+                            <i class="el-icon-user-solid" style="color:white"></i>
+                            <span slot="title" style="color: white">用户</span>
                         </template>
                         <el-menu-item-group>
-                            <span slot="title">分组一</span>
-                            <el-menu-item index="1-1">选项1</el-menu-item>
-                            <el-menu-item index="1-2">选项2</el-menu-item>
+                            <!--<span slot="title">分组一</span>-->
+                            <el-menu-item index="/member/MemberLevel" class="item_margin"><i class="el-icon-paperclip"></i>用户等级</el-menu-item>
+                            <el-menu-item index="/member/MemberList" class="item_margin"><i class="el-icon-paperclip"></i>用户列表</el-menu-item>
                         </el-menu-item-group>
-                        <el-menu-item-group title="分组2">
-                            <el-menu-item index="1-3">选项3</el-menu-item>
-                        </el-menu-item-group>
-                        <el-submenu index="1-4">
-                            <span slot="title">选项4</span>
-                            <el-menu-item index="1-4-1">选项1</el-menu-item>
-                        </el-submenu>
                     </el-submenu>
-                    <el-menu-item index="home">
-                        <i class="el-icon-menu"></i>
-                        <span slot="title">导航二</span>
+
+                    <!--订单-->
+                    <el-submenu index="3" style="background-color: rgba(5,5,5,0.5)">
+                        <template slot="title">
+                            <i class="el-icon-s-order" style="color: white"></i>
+                            <span slot="title" class="title_w">订单</span>
+                        </template>
+                        <el-menu-item-group>
+                            <!--<span slot="title">分组一</span>-->
+                            <el-menu-item index="/orders/OrderDetails" class="item_margin"><i class="el-icon-paperclip"></i>订单详情</el-menu-item>
+                            <el-menu-item index="/orders/OrderList" class="item_margin"><i class="el-icon-paperclip"></i>订单列表</el-menu-item>
+                            <el-menu-item index="/orders/RefunDetails" class="item_margin"><i class="el-icon-paperclip"></i>退换货详情</el-menu-item>
+                            <el-menu-item index="/orders/RefundList" class="item_margin"><i class="el-icon-paperclip"></i>退换货订单</el-menu-item>
+                        </el-menu-item-group>
+                    </el-submenu>
+
+
+                    <!--评论管理-->
+                    <el-menu-item index="/comment" >
+
+                             <i class="el-icon-s-comment" style="color: white"></i>
+                        <span slot="title" class="title_w">评论管理</span>
+
+
                     </el-menu-item>
-                    <el-menu-item index="table" disabled>
+
+
+
+                    <!--灰色-->
+                    <el-menu-item index="home" disabled>
                         <i class="el-icon-document"></i>
-                        <span slot="title">导航三</span>
+                        <span slot="title">灰色区域</span>
                     </el-menu-item>
-                    <el-menu-item index="4">
-                        <i class="el-icon-setting"></i>
-                        <span slot="title">导航四</span>
+
+                    <el-menu-item index="setting" >
+                        <i class="el-icon-setting" style="color: white"></i>
+                        <span slot="title" class="title_w">设置</span>
                     </el-menu-item>
 
                 </el-menu>
@@ -133,6 +179,26 @@
     .el-menu-vertical-demo:not(.el-menu--collapse) {
         width: 200px;
         min-height: 400px;
+        background-color:rgba(95,158,160,0.05);
     }
+    .item_margin{
+        margin-left: 0px;
+        /*background-color:rgba(95,158,160,0.1);*/
+        /*background-color: rgba(95,158,160,0.3);*/
+
+        /*color: white;*/
+    }
+    .item_margin :hover{
+        /*background-color:rgba(95,158,160,0.3);*/
+        /*color: white;*/
+
+    }
+    .nav_bg{
+        /*background-color:rgba(95,158,160,0.3);*/
+    }
+    .title_w{
+        color: white;
+    }
+
 
 </style>

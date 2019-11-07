@@ -77,7 +77,7 @@ export default new Router({
                 {
                     name: 'orderList',
                     path: '/orders/orderList',
-                    component: () => import('./views/orders/OrderList')
+                    component: () => import('@/views/orders/OrderList')
                 },
                 {
                     name: 'orderDetails',
@@ -115,7 +115,14 @@ export default new Router({
                     path:'/goods/commodityStore',
                     component:()=>import('./views/goods/CommodityStore'),
 
-                }]
+                },
+                {
+                    name:'comment',
+                    path:'/comment',
+                    component:()=>import('./views/Comment'),
+
+                }
+                ]
         }
 
     ]
