@@ -79,21 +79,32 @@ export default new Router({
                     path: '/table',
                     component: () => import('./views/Table')
                 },
-                // {
-                //     name: 'orderList',
-                //     path: '/orders/orderList',
-                //     component: () => import('./views/OrderList')
-                // },{
-                //     name: 'orderDetails',
-                //     path: '/orders/orderDetails',
-                //     component: () => import('./views/OrderDetails')
-                // },
+                {
+                    name: 'orderList',
+                    path: '/orders/orderList',
+                    component: () => import('./views/orders/OrderList')
+                },
+                {
+                    name: 'orderDetails',
+                    path: '/orders/orderDetails',
+                    component: () => import('./views/orders/OrderDetails')
+                },
+                {
+                    name: 'refundList',
+                    path: '/orders/refundList',
+                    component: () => import('./views/orders/RefundList')
+                },
+                {
+                    name: 'refundDetails',
+                    path: '/orders/refundDetails',
+                    component: () => import('./views/orders/RefundDetails')
+                },
+
                 {
                     name: 'catalog',
                     path: '/goods/catalog',
                     component: () => import('./views/goods/Catalog')
-                }
-                ,
+                },
                 {
                     name: 'rolelists',
                     path: '/rolelists',
@@ -104,8 +115,34 @@ export default new Router({
                     name: 'userlists',
                     path: '/userlists',
                     component: () => import('./views/role/UserList')
+                },
+                {
+                    name: 'goodsList',
+                    path: '/goods/list',
+                    component: () => import('./views/goods/List')
+                },
+                {
+                    name: 'goodsModel',
+                    path: '/goods/model',
+                    component: () => import('./views/goods/Model')
+                },
+                {
+                    name:'MemberLevel',
+                    path:'/member/memberLevel',
+                    component:()=>import('./views/member/MemberLevel')
+                },
+                {
+                    name:'MemberList',
+                    path:'/member/memberList',
+                    component:()=>import('./views/member/MemberList')
+                },
+                {
+                    name:'CommodityStore',
+                    path:'/goods/commodityStore',
+                    component:()=>import('./views/goods/CommodityStore'),
+
                 }
-            ]
+                ]
         }
 
     ]
