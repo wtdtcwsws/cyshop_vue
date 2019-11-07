@@ -23,25 +23,25 @@
                     <el-form :model="form">
                         <el-col :span="22" :offset="5">
                             <el-form-item label="会员姓名">
-                                <el-input class="modal-input" v-model="form.name"></el-input>
+                                <el-input class="modal-input"></el-input>
                             </el-form-item>
                         </el-col>
 
                         <el-col :span="22" :offset="5">
                             <el-form-item label="会员账号">
-                                <el-input class="modal-input" v-model="form.account"></el-input>
+                                <el-input class="modal-input" ></el-input>
                             </el-form-item>
                         </el-col>
 
                         <el-col :span="22" :offset="5">
                             <el-form-item label="会员密码">
-                                <el-input class="modal-input" v-model="form.password"></el-input>
+                                <el-input class="modal-input" ></el-input>
                             </el-form-item>
                         </el-col>
 
                         <el-col :span="22" :offset="5">
                             <el-form-item label="联系方式">
-                                <el-input class="modal-input" v-model="form.phone"></el-input>
+                                <el-input class="modal-input" ></el-input>
                             </el-form-item>
                         </el-col>
                     </el-form>
@@ -68,7 +68,7 @@
 
             <el-table-column prop="status" label="会员状态" align="center" width="120">
                 <template slot-scope="scope">
-                    <el-switch v-model="scope.row.status" @change=change(scope.row) active-value=1 inactive-value=0>
+                    <el-switch v-model ="scope.row.status" @change=change(scope.row) active-value="1" inactive-value="0">
                     </el-switch>
                 </template>
             </el-table-column>
@@ -88,11 +88,38 @@
         data() {
             return {
                 dialogFormVisible: false,
-                tableData: []
+                tableData: [],
+                input: '',
+                form: {
+                    name: '',
+                    account: '',
+                    password: '',
+                    prhone: ''
+                },
             }
         },
         mounted() {
-            this.ajax()
+
+        },
+        beforeRouteEnter (to, from, next) {
+            next(vm => {
+                axios({
+                    url:'/api/memberList.vue',
+                    method: "get",
+                    responseType:"json",
+                }).then(function(response){
+                    let data = response.data;
+                    // console.log(data)
+                    // for(let one of data){
+                    //     if (one.status == 1){
+                    //         one.status = true
+                    //     }else if(one.status == 0){
+                    //         one.status = false
+                    //     }
+                    // }
+                    vm.tableData = data;
+                })
+            })
         },
         methods: {
             change(row) {
@@ -106,27 +133,12 @@
             opens() {
                 this.dialogFormVisible = false,
                     this.$message("您新增了一位会员！")
-            },
-            ajax() {
-                axios({
-                    url:'/api/memberList.vue',
-                    method: "get",
-                    responseType:"json",
-                    }).then((response) => {
-                    console.log(response.data);
-                    this.tableData = response.data;
-                })
             }
         },
         watch: {
             '$route': 'ajax'
         },
-        form: {
-            name: '',
-            account: '',
-            password: '',
-            prhone: ''
-        },
+
         formLabelWidth: '320px'
 
 
