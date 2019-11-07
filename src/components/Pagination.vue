@@ -1,13 +1,13 @@
 <template>
     <div class="block">
         <!--<span class="demonstration">直接前往</span>-->
-            <el-pagination
-                @size-change="handleSizeChange"
-                @current-change="handleCurrentChange"
-                :current-page.sync="currentPage"
-                :page-size="pageSize"
-                layout="prev, pager, next, jumper"
-                :total="total">
+        <el-pagination
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+            :current-page.sync="currentPage"
+            :page-size="pageSize"
+            layout="prev, pager, next, jumper"
+            :total="total">
         </el-pagination>
     </div>
 </template>

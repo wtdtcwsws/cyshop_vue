@@ -1,7 +1,7 @@
     <template >
         <div style="background-image: url('/timg.jpg');width: 100%;height: 100%;z-index: -1; padding: 100px " >
-            <div style="width: 500px;margin: 180px auto;border-radius: 10px;margin-left: 30%" class="LoginBox">
-                <el-form ref="loginForm" label-width="80px" :model="loginModel" :rules="loginRules" >
+            <div style="width: 500px;margin: 180px auto;border-radius: 10px;margin-left: 40%" class="LoginBox">
+                <el-form ref="loginForm" label-width="80px" :model="loginModel" :rules="loginRules" style="padding: 5px">
                     <!--<el-form-item label="账号" prop="account" style="color: white">-->
                         <!--<el-input v-model="loginModel.account" placeholder="账号" round></el-input>-->
                     <!--</el-form-item>-->
@@ -12,19 +12,19 @@
                         <!--<el-input v-model="loginModel.validCode" placeholder="验证码" style="width: 50%;border-radius: 30px" round></el-input>-->
                         <!--<label style="border: 1px solid #efef;margin-left: 20px;color: white;">{{loginModel.code}}</label>-->
                     <!--</el-form-item>-->
-                    <div class="login_inputBox">
-                        <span style="color:white;margin-right: 10px;font-size: 14px;margin-left: 41px">账号</span>
-                        <el-input v-model="loginModel.account" placeholder="账号" round style="width: 70%"></el-input>
-                    </div>
-                    <div class="login_inputBox">
-                        <span style="color: white;margin-right: 10px;font-size: 14px;margin-left: 41px">密码</span>
-                        <el-input v-model="loginModel.password" placeholder="密码" show-password round style="width: 70%;"></el-input>
-                    </div>
-                    <div class="login_inputBox">
-                        <span style="color: white;margin-right: 10px;font-size: 14px;margin-left: 28px">验证码</span>
+                    <el-form-item class="login_inputBox" prop="account">
+                        <span style="color:white;margin-right: 10px;font-size: 14px;margin-left: 14px">账号</span>
+                        <el-input v-model="loginModel.account" placeholder="账号" round style="width: 67%;margin-right: 10px"></el-input>
+                    </el-form-item>
+                    <el-form-item class="login_inputBox" prop="password">
+                        <span style="color: white;margin-right: 10px;font-size: 14px;margin-left: 14px">密码</span>
+                        <el-input v-model="loginModel.password" placeholder="密码" show-password round style="width: 67%;margin-right: 10px"></el-input>
+                    </el-form-item>
+                    <el-form-item class="login_inputBox" prop="validCode">
+                        <span style="color: white;margin-right: 10px;font-size: 14px;margin-left: 0px">验证码</span>
                         <el-input v-model="loginModel.validCode" placeholder="验证码" style="width: 30%;border-radius: 30px" round></el-input>
                         <label style="border: 1px solid #efef;margin-left: 20px;color: white;">{{loginModel.code}}</label>
-                    </div>
+                    </el-form-item>
                     <hr>
                     <el-form-item>
                         <el-button type="primary" @click="onLogin" style="width: 80%;margin-top: 20px" >登录</el-button>
@@ -153,7 +153,7 @@
         padding: 30px;
         background-color: rgba(5,5,5,0.5);
     }
-    div.login_inputBox {
+    .login_inputBox {
         margin-bottom: 20px;
     }
 </style>

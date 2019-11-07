@@ -33,7 +33,6 @@ export default new Router({
             path: '/login',
             component: () => import('./views/Login')
         },
-
         {
             name: 'Index',
             path: '/index',
@@ -54,27 +53,33 @@ export default new Router({
                     path: '/table',
                     component: () => import('./views/Table')
                 }
-                // , {
-                //     name: 'liuzhi',
-                //     path: '/liuzhi',
-                //     component: () => import('./views/liuzhi')
-                // },
-                // {
-                //     name: 'wutong',
-                //     path: '/wutong',
-                //     component: () => import('./views/WuTong')
-                // },
-                // {
-                //     name:'zhy',
-                //     path:'/zhy',
-                //     component:()=>import('./views/Zhy')
-                // }
                 ,
                 {
                     name: 'table',
                     path: '/table',
                     component: () => import('./views/Table')
                 },
+                {
+                    name: 'orderList',
+                    path: '/orders/orderList',
+                    component: () => import('./views/orders/OrderList')
+                },
+                {
+                    name: 'orderDetails',
+                    path: '/orders/orderDetails',
+                    component: () => import('./views/orders/OrderDetails')
+                },
+                {
+                    name: 'refundList',
+                    path: '/orders/refundList',
+                    component: () => import('./views/orders/RefundList')
+                },
+                {
+                    name: 'refundDetails',
+                    path: '/orders/refundDetails',
+                    component: () => import('./views/orders/RefundDetails')
+                },
+
                 {
                     name: 'catalog',
                     path: '/goods/catalog',
@@ -89,6 +94,22 @@ export default new Router({
                     name: 'goodsModel',
                     path: '/goods/model',
                     component: () => import('./views/goods/Model')
+                },
+                {
+                    name:'MemberLevel',
+                    path:'/member/memberLevel',
+                    component:()=>import('./views/member/MemberLevel')
+                },
+                {
+                    name:'MemberList',
+                    path:'/member/memberList',
+                    component:()=>import('./views/member/MemberList')
+                },
+                {
+                    name:'CommodityStore',
+                    path:'/goods/commodityStore',
+                    component:()=>import('./views/goods/CommodityStore'),
+
                 }
             ]
         }
