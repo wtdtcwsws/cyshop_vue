@@ -3,10 +3,7 @@
         <el-header>
             <el-row :gutter="2">
                 <el-col :span="2">
-                    <el-image
-                            style="width: 120px; height: 60px;"
-                            :src="url"
-                            :fit="fit"></el-image>
+                    <img style="width: 120px; height: 56px;" src="../assets/icon.png"/>
                 </el-col>
 
                 <el-col :span="2">
@@ -23,7 +20,7 @@
                         <el-input
                                 placeholder="请输入内容"
                                 prefix-icon="el-icon-search"
-                                v-model="input2">
+                                >
                         </el-input>
                     </div>
                 </el-col>
@@ -45,37 +42,38 @@
                          :router="true"
                          :uniqueOpened="true">
 
-                    <el-submenu index="1">
+                    <el-menu-item index="home">
+                        <i class="el-icon-menu"></i>
+                        <span slot="title">首页</span>
+                    </el-menu-item>
+
+                    <el-submenu index="" class="title">
                         <template slot="title">
                             <i class="el-icon-location"></i>
                             <span slot="title">导航一</span>
                         </template>
                         <el-menu-item-group>
                             <span slot="title">分组一</span>
-                            <el-menu-item index="1-1">选项1</el-menu-item>
-                            <el-menu-item index="1-2">选项2</el-menu-item>
-                        </el-menu-item-group>
-                        <el-menu-item-group title="分组2">
-                            <el-menu-item index="1-3">选项3</el-menu-item>
-                        </el-menu-item-group>
-                        <el-submenu index="1-4">
+                            <el-menu-item index="userlists">角色列表</el-menu-item>
+                            <el-menu-item index="addrole">添加角色</el-menu-item>
+                        <el-submenu index="">
                             <span slot="title">选项4</span>
-                            <el-menu-item index="1-4-1">选项1</el-menu-item>
+                            <el-menu-item index="404">404</el-menu-item>
                         </el-submenu>
+                        </el-menu-item-group>
                     </el-submenu>
                     <el-menu-item index="home">
                         <i class="el-icon-menu"></i>
                         <span slot="title">导航二</span>
                     </el-menu-item>
-                    <el-menu-item index="table" disabled>
+                    <el-menu-item index="table">
                         <i class="el-icon-document"></i>
                         <span slot="title">导航三</span>
                     </el-menu-item>
-                    <el-menu-item index="4">
+                    <el-menu-item index="">
                         <i class="el-icon-setting"></i>
                         <span slot="title">导航四</span>
                     </el-menu-item>
-
                 </el-menu>
             </div>
 
@@ -101,7 +99,7 @@
         },
         data() {
             return {
-                isCollapse: false
+                isCollapse: false,
             };
         },
         methods: {
@@ -133,6 +131,11 @@
     .el-menu-vertical-demo:not(.el-menu--collapse) {
         width: 200px;
         min-height: 400px;
+    }
+
+    .title {
+        font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+        font-size: 18px;
     }
 
 </style>

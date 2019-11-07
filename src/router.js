@@ -7,23 +7,6 @@ export default new Router({
     mode: 'history',
     base: process.env.BASE_URL,
     routes: [
-        // {
-        //   path: '/',
-        //   name: 'home',
-        //   component: Home
-        // },
-        // {
-        //   path: '/about',
-        //   name: 'about',
-        //   // route level code-splitting
-        //   // this generates a separate chunk (about.[hash].js) for this route
-        //   // which is lazy-loaded when the route is visited.
-        //   component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-        // }, {
-        //       path: '/table',
-        //       name: 'table',
-        //       component: () => import(/* webpackChunkName: "about" */ './views/Table.vue')
-        //   }
         {
             path: '/',
             redirect: '/login'
@@ -39,6 +22,11 @@ export default new Router({
             component: () => import('./views/Main'),
             children: [
                 {
+                    name: '404',
+                    path: '/404',
+                    component: () => import('@/components/layout/404')
+                },
+                {
                     name: 'home',
                     path: '/home',
                     component: () => import('./views/Home')
@@ -53,21 +41,6 @@ export default new Router({
                     path: '/table',
                     component: () => import('./views/Table')
                 }
-                // , {
-                //     name: 'liuzhi',
-                //     path: '/liuzhi',
-                //     component: () => import('./views/liuzhi')
-                // },
-                // {
-                //     name: 'wutong',
-                //     path: '/wutong',
-                //     component: () => import('./views/WuTong')
-                // },
-                // {
-                //     name:'zhy',
-                //     path:'/zhy',
-                //     component:()=>import('./views/Zhy')
-                // }
                 ,
                 {
                     name: 'table',
@@ -89,9 +62,15 @@ export default new Router({
                 }
                 ,
                 {
-                    name: 'rolelist',
-                    path: '/rolelist',
+                    name: 'rolelists',
+                    path: '/rolelists',
                     component: () => import('./views/role/RoleList')
+                }
+                ,
+                {
+                    name: 'userlists',
+                    path: '/userlists',
+                    component: () => import('./views/role/UserList')
                 }
             ]
         }
