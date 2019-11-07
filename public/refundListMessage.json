@@ -1,71 +1,56 @@
 {
   "rows":[{
-    // 订单id
     "orderId":"1001",
-    // 买家账号
     "memberName":"小王",
-    // 收件人姓名
     "consigneeName":"小王",
-    // 订单价格
-    "totalPrice":"2999",
-    // 邮费
-    "postPrice":"10",
-    // 实际支付价格
+    "memberPhone":"13112345678",
     "payment":"3009",
-    // 订单状态
-    "orderStatus":"待付款",
-    // 支付方式
+    "refundStatus":"未处理",
     "paymentWay":"支付宝",
-    // 订单创建时间
     "createTime":"2019-11-06"
   },{
     "orderId":"1002",
     "memberName":"小桃",
     "consigneeName":"小桃",
-    "totalPrice":"5669",
-    "postPrice":"0",
+    "memberPhone":"13278342368",
     "payment":"5669",
-    "orderStatus":"已付款",
+    "refundStatus":"已完成",
     "paymentWay":"银联支付",
     "createTime":"2019-11-06"
   },{
     "orderId":"1003",
     "memberName":"小春",
     "consigneeName":"小桃",
-    "totalPrice":"5998",
-    "postPrice":"10",
+    "memberPhone":"18818974453",
     "payment":"5998",
-    "orderStatus":"已发货",
+    "refundStatus":"未处理",
     "paymentWay":"微信",
     "createTime":"2019-11-05"
   },{
     "orderId":"1004",
     "memberName":"小绿",
     "consigneeName":"小桃",
-    "totalPrice":"7688",
-    "postPrice":"10",
+    "memberPhone":"13412598678",
     "payment":"7698",
-    "orderStatus":"未发货",
+    "refundStatus":"已通过",
     "paymentWay":"微信",
     "createTime":"2019-11-02"
   },{
     "orderId":"1005",
     "memberName":"小红",
     "consigneeName":"小桃",
-    "totalPrice":"6579",
-    "postPrice":"10",
+    "memberPhone":"13814345665",
     "payment":"6589",
-    "orderStatus":"已发货",
+    "refundStatus":"已通过",
     "paymentWay":"微信",
     "createTime":"2019-11-01"
   },{
     "orderId":"1006",
     "memberName":"小黑",
     "consigneeName":"小桃",
-    "totalPrice":"1999",
-    "postPrice":"0",
+    "memberPhone":"15712386612",
     "payment":"1999",
-    "orderStatus":"已发货",
+    "refundStatus":"已完成",
     "paymentWay":"支付宝",
     "createTime":"2019-11-01"
   }]

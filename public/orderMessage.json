@@ -1,0 +1,23 @@
+{
+  "rows":[{
+    "skuId":"T001",
+    "skuName":"小米手机",
+    "skuDescription":"网通3G+32G 银色",
+    "num":"1",
+    "price":"1999",
+    "sum":"1999"
+  }],
+  "row":{
+    "account":"admin",
+    "phone":"13112345678",
+    "payment":"3009",
+    "orderStatus":"已付款",
+    "createTime":"2019-11-06",
+    "paymentTime":"",
+    "paymentWay":"支付宝",
+    "consigneeName":"小王",
+    "consigneePhone":"13112345678",
+    "consigneeAddress":"13112345678",
+    "zip":"623000"
+  }
+}
