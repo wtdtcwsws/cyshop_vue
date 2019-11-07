@@ -1,8 +1,16 @@
 <template>
     <el-row>
-        <h2>订单详情信息</h2>
+        <!--<h2>订单详情信息</h2>-->
+        <el-row :gutter="20">
+            <el-col :span="1">
+                <el-button type="info" icon="el-icon-back" circle @click="returnOrderList"></el-button>
+            </el-col>
+            <el-col :span="3">
+                <h2 style="margin: 5px">订单详情信息</h2>
+            </el-col>
+        </el-row>
         <el-row>
-            <h3>订单信息</h3>
+            <h3>订单编号：<label>{{orderMsg.orderId}}</label></h3>
             <el-row>
                 <el-col :span="8">
                     <label style="color: darkgray">买家账号：</label>
@@ -126,7 +134,7 @@
                 </el-form-item>
                 <el-form-item label="执行操作：">
                     <el-button type="primary" @click="onSubmit">去发货</el-button>
-                    <el-button @click="changStatus">无效</el-button>
+                    <el-button @click="changStatus(orderMsg.orderId)">无效</el-button>
                 </el-form-item>
             </el-form>
             <br>
@@ -167,7 +175,46 @@
                 )
             },
             onSubmit(){
-                console.log("去发货了");
+                this.$prompt('请输入8位快递单号', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    inputPattern: /^\d{8}$/,
+                    inputErrorMessage: '快递单号格式不正确'
+                }).then(({ value }) => {
+                    this.$message({
+                        type: 'success',
+                        message: '订单已发货快递单号为' + value
+                    });
+                    this.$router.push({
+                        name:"orderList"
+                    })
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '取消输入'
+                    });
+                });
+            },
+            changStatus(a){
+                this.$confirm('此操作会使该订单失效, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.$message({
+                        type: 'success',
+                        message: '订单'+ a +'已失效!'
+                    });
+                    this.$router.push({
+                        name:"orderList"
+                    })
+                });
+            },
+            returnOrderList(){
+                let vm = this;
+                vm.$router.push({
+                    name:"orderList"
+                })
             }
         }
     }
