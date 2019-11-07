@@ -39,6 +39,11 @@ export default new Router({
             component: () => import('./views/Main'),
             children: [
                 {
+                    name: '404',
+                    path: '/404',
+                    component: () => import('@/components/layout/404')
+                },
+                {
                     name: 'home',
                     path: '/home',
                     component: () => import('./views/Home')
@@ -53,6 +58,21 @@ export default new Router({
                     path: '/table',
                     component: () => import('./views/Table')
                 }
+                // , {
+                //     name: 'liuzhi',
+                //     path: '/liuzhi',
+                //     component: () => import('./views/liuzhi')
+                // },
+                // {
+                //     name: 'wutong',
+                //     path: '/wutong',
+                //     component: () => import('./views/WuTong')
+                // },
+                // {
+                //     name:'zhy',
+                //     path:'/zhy',
+                //     component:()=>import('./views/Zhy')
+                // }
                 ,
                 {
                     name: 'table',
@@ -86,6 +106,17 @@ export default new Router({
                     component: () => import('./views/goods/Catalog')
                 },
                 {
+                    name: 'rolelists',
+                    path: '/rolelists',
+                    component: () => import('./views/role/RoleList')
+                }
+                ,
+                {
+                    name: 'userlists',
+                    path: '/userlists',
+                    component: () => import('./views/role/UserList')
+                },
+                {
                     name: 'goodsList',
                     path: '/goods/list',
                     component: () => import('./views/goods/List')
@@ -111,7 +142,7 @@ export default new Router({
                     component:()=>import('./views/goods/CommodityStore'),
 
                 }
-            ]
+                ]
         }
 
     ]
