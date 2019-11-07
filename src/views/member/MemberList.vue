@@ -108,7 +108,6 @@
                     this.$message("您新增了一位会员！")
             },
             ajax() {
-                var that = this
                 axios({
                     url:'/api/memberList.vue',
                     method: "get",
