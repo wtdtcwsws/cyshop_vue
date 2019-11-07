@@ -94,12 +94,28 @@ export default new Router({
                     path: '/orders/refundDetails',
                     component: () => import('./views/orders/RefundDetails')
                 },
+
                 {
                     name: 'catalog',
                     path: '/goods/catalog',
                     component: () => import('./views/goods/Catalog')
-                }
-            ]
+                },
+                {
+                    name:'MemberLevel',
+                    path:'/member/memberLevel',
+                    component:()=>import('./views/member/MemberLevel')
+                },
+                {
+                    name:'MemberList',
+                    path:'/member/memberList',
+                    component:()=>import('./views/member/MemberList')
+                },
+                {
+                    name:'CommodityStore',
+                    path:'/goods/commodityStore',
+                    component:()=>import('./views/goods/CommodityStore'),
+
+                }]
         }
 
     ]
