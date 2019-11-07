@@ -77,12 +77,22 @@ export default new Router({
                 {
                     name: 'orderList',
                     path: '/orders/orderList',
-                    component: () => import('./views/OrderList')
+                    component: () => import('./views/orders/OrderList')
                 },
                 {
                     name: 'orderDetails',
                     path: '/orders/orderDetails',
-                    component: () => import('./views/OrderDetails')
+                    component: () => import('./views/orders/OrderDetails')
+                },
+                {
+                    name: 'refundList',
+                    path: '/orders/refundList',
+                    component: () => import('./views/orders/RefundList')
+                },
+                {
+                    name: 'refundDetails',
+                    path: '/orders/refundDetails',
+                    component: () => import('./views/orders/RefundDetails')
                 },
 
                 {
