@@ -1,0 +1,31 @@
+[
+  {
+    "id":"1",
+    "name":"iphone11",
+    "catalog3":"智能手机",
+    "description":"最丑三摄",
+    "hot":"1"
+  },
+  {
+    "id":"2",
+    "name":"iphone12",
+    "catalog3":"智能手机",
+    "description":"最丑三摄",
+    "hot":"1"
+  },
+  {
+    "id":"3",
+    "name":"iphone13",
+    "catalog3":"智能手机",
+    "description":"最丑三摄",
+    "hot":"1"
+  },
+  {
+    "id":"4",
+    "name":"iphone14",
+    "catalog3":"智能手机",
+    "description":"最丑三摄",
+    "hot":"1"
+  }
+
+]

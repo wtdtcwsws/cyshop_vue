@@ -103,7 +103,10 @@
         },
         data() {
             return {
-                isCollapse: true
+                isCollapse: true,
+                input2:"",
+                url:"",
+                fit:""
             };
         },
         methods: {
