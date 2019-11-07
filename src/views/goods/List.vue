@@ -73,12 +73,15 @@
         },
         methods:{
             ajax(){
-                // let vm = this;
-                axios.get('/wutong/catalog.json','json')
+                let vm = this;
+                axios.get('/wutong/goods.json','json')
                 .then(function (response) {
                     console.log(response.data)
+                    console.log(response)
                     // console.log(vm);
-                    // this.tableData = response.data;
+                    vm.tableData= response.data;
+                    console.log(vm.tableData);
+                    // this.tableData[1] = response.data[1];
                 })}
         }
     };
