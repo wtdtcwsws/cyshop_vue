@@ -1,6 +1,6 @@
     <template >
-        <div style="background-image: url('/timg.jpg');width: 100%;height: 100%;z-index: -1; padding: 100px " >
-            <div style="width: 500px;margin: 180px auto;border-radius: 10px;margin-left: 40%" class="LoginBox">
+        <div style="background-image: url('/timg6.png');width: auto;height: auto ;z-index: -1;background-size:100%; padding: 148px;min-width: 1024px;max-width: 100%; " >
+            <div style="width: 500px;margin: 180px auto;border-radius: 10px;margin-left: 35%" class="LoginBox">
                 <el-form ref="loginForm" label-width="80px" :model="loginModel" :rules="loginRules" style="padding: 5px">
                     <!--<el-form-item label="账号" prop="account" style="color: white">-->
                         <!--<el-input v-model="loginModel.account" placeholder="账号" round></el-input>-->
@@ -152,6 +152,7 @@
         border: 1px solid #999;
         padding: 30px;
         background-color: rgba(5,5,5,0.5);
+        z-index: 1;
     }
     .login_inputBox {
         margin-bottom: 20px;

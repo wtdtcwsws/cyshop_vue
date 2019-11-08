@@ -41,10 +41,12 @@
         </el-header>
         <el-container >
             <!--最底色-->
-            <div class="nav_bg" style="background-color: rgba(53,73,94,0.9)" >
+            <div class="nav_bg" style="background-color: rgba(53,73,94,0.9);z-index: 1 " >
                 <el-menu default-active="1-1" class="el-menu-vertical-demo " @open="handleOpen" @close="handleClose" :collapse="isCollapse"
                          :router="true"
                          active-text-color="red"
+
+
 
                          :uniqueOpened="true" style="">
 
@@ -85,7 +87,7 @@
                     </el-submenu>
 
                     <!--订单-->
-                    <el-submenu index="3" style="background-color: rgba(5,5,5,0.5)">
+                    <el-submenu index="3" style="background-color: rgba(53,73,94,1)">
                         <template slot="title">
                             <i class="el-icon-s-order" style="color: white"></i>
                             <span slot="title" class="title_w">订单</span>
@@ -101,7 +103,7 @@
 
 
                     <!--评论管理-->
-                    <el-menu-item index="/comment" >
+                    <el-menu-item index="/comment"  style="background-color: rgba(53,73,94,1)">
 
                              <i class="el-icon-s-comment" style="color: white"></i>
                         <span slot="title" class="title_w">评论管理</span>
@@ -112,12 +114,12 @@
 
 
                     <!--灰色-->
-                    <el-menu-item index="home" disabled>
-                        <i class="el-icon-document"></i>
-                        <span slot="title">灰色区域</span>
-                    </el-menu-item>
+                    <!--<el-menu-item index="home" disabled>-->
+                        <!--<i class="el-icon-document"></i>-->
+                        <!--<span slot="title">灰色区域</span>-->
+                    <!--</el-menu-item>-->
 
-                    <el-menu-item index="setting" >
+                    <el-menu-item index="setting"  style="background-color: rgba(5,5,5,0.5)">
                         <i class="el-icon-setting" style="color: white"></i>
                         <span slot="title" class="title_w">设置</span>
                     </el-menu-item>
@@ -188,19 +190,28 @@
         margin-left: 0px;
         /*background-color:rgba(95,158,160,0.1);*/
         /*background-color: rgba(95,158,160,0.3);*/
+        background-color: rgba(40,50,59,1);
 
-        /*color: white;*/
+        color: white;
     }
-    .item_margin :hover{
-        /*background-color:rgba(95,158,160,0.3);*/
-        /*color: white;*/
 
-    }
     .nav_bg{
         /*background-color:rgba(95,158,160,0.3);*/
+        /*background-color: white;*/
+        /*color: white;*/
     }
     .title_w{
         color: white;
+    }
+
+    /*环扣图标设置*/
+    .el-icon-paperclip{
+        /*background-color: white;*/
+        color: white;
+
+    }
+    .el-menu-vertical-demo el-menu{
+
     }
 
 

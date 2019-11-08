@@ -17,9 +17,9 @@
 
 
             <!--新增评论按钮-->
-            <el-col :span="1" offset="12">
-                <el-button type="primary" icon="el-icon-plus" class="add-button" @click="addComment = true" close-on-click-modal="false">新增评论</el-button>
-            </el-col>
+            <!--<el-col :span="1" offset="12">-->
+                <!--<el-button type="primary" icon="el-icon-plus" class="add-button" @click="addComment = true" close-on-click-modal="false">新增评论</el-button>-->
+            <!--</el-col>-->
 
 
 
@@ -102,9 +102,9 @@
                     label="操作"
                     align="center">
                 <template slot-scope="scope">
-                    <el-button
-                            size="mini"
-                            @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                    <!--<el-button-->
+                            <!--size="mini"-->
+                            <!--@click="handleEdit(scope.$index, scope.row)">编辑</el-button>-->
                     <el-button
                             size="mini"
                             type="danger"
@@ -114,6 +114,8 @@
             </el-table-column>
 
         </el-table>
+
+
     </div>
 
 </template>
@@ -238,35 +240,7 @@
                 }, 1000)
             },
             handleEdit() {
-                this.$alert('<div style="width: 100%;padding: 5px;margin-bottom: 5px">' +
-                    '<el-row ><el-col :span="24"><span>评论编号</span><input type="text"></span></el-col></el-row><br>' +
-                    '<el-row><el-col :span="24"><span>SPU编号</span><input type="text"></span></el-col></el-row><br>' +
-                    '<el-row><el-col :span="24"><span>SKU编号</span><input type="text"></span></el-col></el-row><br>' +
-                    '<el-row><el-col :span="24"><span>评论内容</span><input type="text"></span></el-col></el-row><br>' +
-                    '<el-row><el-col :span="24"><span>评论星级</span><input type="text"></span></el-col></el-row><br>' +
-                    '<el-row><el-col :span="24"><span>用户名称</span><input type="text"></span></el-col></el-row><br>' +
-                    '<el-row><el-col :span="24"><span>评论时间</span><input type="text"></span></el-col></el-row><br>' +
-                    '</div>',
-                    '编辑评论', {
-                    distinguishCancelAndClose: true,
-                        dangerouslyUseHTMLString:true,
-                    confirmButtonText: '保存',
-                    cancelButtonText: '放弃修改'
-                })
-                    .then(() => {
-                        this.$message({
-                            type: 'info',
-                            message: '保存修改'
-                        });
-                    })
-                    .catch(action => {
-                        this.$message({
-                            type: 'info',
-                            message: action === 'cancel'
-                                ? '放弃保存并离开页面'
-                                : '停留在当前页面'
-                        })
-                    });
+
             },
             // handleDelete(index, row) {
             //     row.splice(index, 1);
