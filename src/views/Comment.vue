@@ -93,7 +93,10 @@
                     label="隐藏"
                     align="center">
                 <template slot-scope="scope">
-                    <el-switch v-model="scope.row.status" active-text="隐藏" inactive-text="不隐藏" inactive-color="#ff4949" @change=change(scope.row)>
+                    <el-switch v-model="scope.row.hide"
+                               :inactive-value="0"
+                               :active-value="1"
+                               active-text="隐藏" inactive-text="不隐藏" inactive-color="#ff4949"  @change=change(scope.row)>
                     </el-switch>
                 </template>
             </el-table-column>
@@ -165,7 +168,7 @@
                     console.log(response.data);
                     let comments = [];
                     comments = response.data;
-                    console.log(comments)
+                    console.log('comments',comments)
                     vm.tableData = comments;
                 })},
             // handleDelete(index, row) {
@@ -173,10 +176,12 @@
             // }
             deleteRow(index, rows) {
                 rows.splice(index, 1);
-            }
+            },
+
 
 
         },
+
     }
 </script>
 
