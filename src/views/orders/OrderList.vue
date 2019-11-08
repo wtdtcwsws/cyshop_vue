@@ -91,12 +91,24 @@
                 total:60
             }
         },
-        mounted(){
-            this.ajax();
-        },
-        watch: {
-            // 如果路由有变化，会再次执行该方法
-            '$route': 'ajax'
+        // mounted(){
+        //     this.ajax();
+        // },
+        // watch: {
+        //     // 如果路由有变化，会再次执行该方法
+        //     '$route': 'ajax'
+        // },
+        beforeRouteEnter(to,employees,next){
+            next(vm => {
+                axios({
+                    url:'/api/getOrderList',
+                    method: "get",
+                    responseType:"json",
+                }).then(function(response){
+                    let data = response.data;
+                    vm.employees = data;
+                })
+            })
         },
         methods: {
             handleClick(index, a) {
@@ -112,15 +124,15 @@
             handleCurrentChange(val) {
                 console.log(`当前页: ${val}`);
             }
-            ,ajax(){
-                let vm = this;
-                axios({method:'get',url:"/orderListMessage.json",responseType:"json"}).then(
-                    function (resule) {
-                        // console.log(resule.data.rows);
-                        vm.employees = resule.data.rows;
-                    }
-                )
-            }
+            // ,ajax(){
+            //     let vm = this;
+            //     axios({method:'post',url:"/api/getOrderList",responseType:"json"}).then(
+            //         function (resule) {
+            //             // console.log(resule.data.rows);
+            //             vm.employees = resule.data;
+            //         }
+            //     )
+            // }
         }
     }
 </script>
