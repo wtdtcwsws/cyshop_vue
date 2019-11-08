@@ -131,6 +131,11 @@ export default new Router({
                     path:'/comment',
                     component:()=>import('./views/Comment'),
 
+                },
+                {
+                    name:'test',
+                    path:'/test',
+                    component:()=>import('./views/Test'),
                 }
                 ]
         }

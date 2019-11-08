@@ -112,6 +112,16 @@
                     </el-menu-item>
 
 
+                    <!--测试用-->
+                    <el-menu-item index="/Test"  style="background-color: rgba(53,73,94,1)">
+
+                        <i class="el-icon-s-comment" style="color: white"></i>
+                        <span slot="title" class="title_w">测试页面</span>
+
+
+                    </el-menu-item>
+
+
 
                     <!--灰色-->
                     <!--<el-menu-item index="home" disabled>-->

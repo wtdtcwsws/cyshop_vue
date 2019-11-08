@@ -39,57 +39,57 @@
                 default-expand-all
                 :tree-props="{children: 'children', hasChildren: 'hasChildren'}">
             <el-table-column
-                    prop="comment_id"
+                    prop="id"
                     label="评论编号"
                     sortable
-                    width="110"
                     align="center">
             </el-table-column>
             <el-table-column
-                    prop="spu_id"
+                    prop="spuId"
                     label="SPU编号"
                     sortable
-                    width="180"
                     align="center">
             </el-table-column>
             <el-table-column
-                    prop="sku_id"
+                    prop="skuId"
                     label="SKU编号"
                     sortable
-                    width="180"
                     align="center">
             </el-table-column>
             <el-table-column
                     prop="content"
                     label="评论内容"
                     sortable
-                    width="220"
                     align="center">
             </el-table-column>
             <el-table-column
-                    prop="start"
+                    prop="star"
                     label="评论星级"
                     sortable
-                    width="120"
                     align="center">
             </el-table-column>
 
             <el-table-column
-                    prop="name"
+                    prop="memberId"
+                    label="用户编号"
+                    sortable
+                    align="center">
+            </el-table-column>
+
+            <el-table-column
+                    prop="memberName"
                     label="用户名称"
                     sortable
-                    width="150"
                     align="center">
             </el-table-column>
             <el-table-column
-                    prop="date"
+                    prop="publishTime"
                     label="评论时间"
                     sortable
-                    width="180"
                     align="center">
             </el-table-column>
             <el-table-column
-                    prop="open"
+                    prop="hide"
                     label="隐藏"
                     align="center">
                 <template slot-scope="scope">
@@ -121,101 +121,17 @@
 </template>
 
 <script>
+    const axios = require('axios');
     export default {
+        mounted(){
+            this.ajax();
+        },
         name: "comment",
         data() {
             return {
+                input: '',
 
-
-                tableData: [{
-                    comment_id:1,
-                    spu_id: 1,
-                    sku_id: 1,
-                    date: '2016-05-02',
-                    content:'dasdasdasds',
-                    start:'⭐⭐⭐⭐⭐',
-                    name: '王小虎11',
-                    open:'true',
-                    operating:''
-                }, {
-                    comment_id:1,
-                    spu_id: 1,
-                    sku_id: 1,
-                    date: '2016-05-02',
-                    content:'dasdasdasds',
-                    start:'⭐⭐⭐⭐⭐',
-                    name: '王小虎',
-                    open:'false',
-
-                    operating:''
-                },
-                    {
-                        comment_id:1,
-                        spu_id: 1,
-                        sku_id: 1,
-                        date: '2016-05-02',
-                        content:'dasdasdasds',
-                        start:'⭐⭐⭐⭐⭐',
-                        name: '王小虎11',
-                        open:'true',
-                        operating:''
-                    }, {
-                        comment_id:1,
-                        spu_id: 1,
-                        sku_id: 1,
-                        date: '2016-05-02',
-                        content:'dasdasdasds',
-                        start:'⭐⭐⭐⭐⭐',
-                        name: '王小虎',
-                        open:'false',
-
-                        operating:''
-                    },
-                    {
-                        comment_id:1,
-                        spu_id: 1,
-                        sku_id: 1,
-                        date: '2016-05-02',
-                        content:'dasdasdasds',
-                        start:'⭐⭐⭐⭐⭐',
-                        name: '王小虎11',
-                        open:'true',
-                        operating:''
-                    }, {
-                        comment_id:1,
-                        spu_id: 1,
-                        sku_id: 1,
-                        date: '2016-05-02',
-                        content:'dasdasdasds',
-                        start:'⭐⭐⭐⭐⭐',
-                        name: '王小虎',
-                        open:'false',
-
-                        operating:''
-                    },
-                    {
-                        comment_id:1,
-                        spu_id: 1,
-                        sku_id: 1,
-                        date: '2016-05-02',
-                        content:'dasdasdasds',
-                        start:'⭐⭐⭐⭐⭐',
-                        name: '王小虎11',
-                        open:'true',
-                        operating:''
-                    }, {
-                        comment_id:1,
-                        spu_id: 1,
-                        sku_id: 1,
-                        date: '2016-05-02',
-                        content:'dasdasdasds',
-                        start:'⭐⭐⭐⭐⭐',
-                        name: '王小虎',
-                        open:'false',
-
-                        operating:''
-
-                    },
+                tableData: [
 
                 ],
 
@@ -242,6 +158,16 @@
             handleEdit() {
 
             },
+            ajax(){
+                let vm = this;
+                axios.get('/api/getComment')
+                .then(function (response) {
+                    console.log(response.data);
+                    let comments = [];
+                    comments = response.data;
+                    console.log(comments)
+                    vm.tableData = comments;
+                })},
             // handleDelete(index, row) {
             //     row.splice(index, 1);
             // }
