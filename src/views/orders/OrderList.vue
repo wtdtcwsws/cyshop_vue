@@ -5,7 +5,7 @@
             <el-table
                     class=""
                     :data="employees"
-                    style="margin-bottom: 20px;"
+                    style="margin-bottom: 20px;height: 549px;"
                     row-key="id"
                     border
                     max-height="430">
@@ -65,6 +65,11 @@
                 </el-table-column>
             </el-table>
         </el-row>
+        <!--<el-row>-->
+            <!--<el-col :span="2" :offset="11">-->
+                <!--<el-button style="height: 500px" v-if="noDate" type="text" disabled>暂无数据</el-button>-->
+            <!--</el-col>-->
+        <!--</el-row>-->
         <el-row>
             <el-pagination
                     @size-change="handleSizeChange"
@@ -115,7 +120,10 @@
                 console.log(a);
                 let vm1 = this;
                 vm1.$router.push({
-                    name:'orderDetails'
+                    name:'orderDetails',
+                    params:{
+                        id:a
+                    }
                 })
             },
             handleSizeChange(val) {

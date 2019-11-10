@@ -73,19 +73,12 @@
                 </el-col>
             </el-row>
             <br/>
-            <el-row>
-                <el-col>
-                    <label style="color: darkgray">邮编：</label>
-                    <label>{{orderMsg.zip}}</label>
-                </el-col>
-            </el-row>
-            <br/>
             <hr>
         </el-row>
         <el-row>
             <h3>商品信息</h3>
             <el-table
-                    :data="employees"
+                    :data="orderMsg.children"
                     border>
                 <el-table-column
                         prop="skuId"
@@ -115,7 +108,7 @@
             <br>
             <el-row>
                 <el-col align="right">
-                    <label>订单总额：￥1999.0</label>
+                    <label>订单总额：￥{{orderMsg.payment}}</label>
                 </el-col>
             </el-row>
             <br>
@@ -124,7 +117,7 @@
         <el-row>
             <h3>操作信息</h3>
             <el-form ref="form" :model="form">
-                <el-form-item label="操作备注：">
+                <el-form-item v-if="operation" label="操作备注：">
                     <el-input type="textarea"
                               v-model="form.desc"
                               style="width: 800px"
@@ -133,8 +126,9 @@
                     </el-input>
                 </el-form-item>
                 <el-form-item label="执行操作：">
-                    <el-button type="primary" @click="onSubmit">去发货</el-button>
-                    <el-button @click="changStatus(orderMsg.orderId)">无效</el-button>
+                    <el-button type="primary" v-if="isGoblock" @click="onSubmit">去发货</el-button>
+                    <el-button v-if="isDeLblock" @click="changeStatus">无效</el-button>
+                    <el-button v-if="isblock" type="text" disabled>无</el-button>
                 </el-form-item>
             </el-form>
             <br>
@@ -149,8 +143,25 @@
         name: "OrderDetails",
         data(){
             return{
-                employees:[],
-                orderMsg:{},
+                orderMsg:{
+                    orderId:"",
+                    account:"",
+                    phone:"",
+                    payment:"",
+                    orderStatus:"",
+                    createTime:"",
+                    paymentTime:"",
+                    paymentWay:"",
+                    consigneeName:"",
+                    consigneePhone:"",
+                    consigneeAddress:""
+                },
+                isGoblock:false,
+                isDeLblock:true,
+                isblock:false,
+                operation:true,
+                oStatus:"",
+                uResule:"",
                 form:{
                     desc:""
                 }
@@ -166,11 +177,27 @@
         methods: {
             ajax(){
                 let vm = this;
-                axios({method:'get',url:"/orderMessage.json",responseType:"json"}).then(
+                axios({method:'post',
+                        url:"/api/getOrderDetails",
+                        responseType:"json",
+                        params:{
+                        id:vm.$route.params.id
+                    }}).then(
                     function (resule) {
-                        console.log(resule.data.rows);
-                        vm.employees = resule.data.rows;
-                        vm.orderMsg = resule.data.row;
+                        vm.orderMsg = resule.data;
+                        if(vm.orderMsg.orderStatus == "已付款"){
+                            vm.isGoblock = true
+                        }else if(vm.orderMsg.orderStatus == "已失效"){
+                            vm.isGoblock = false;
+                            vm.isDeLblock = false;
+                            vm.isblock = true;
+                            vm.operation = false;
+                        }else if(vm.orderMsg.orderStatus == "已发货"){
+                            vm.isGoblock = false;
+                            vm.isDeLblock = false;
+                            vm.isblock = true;
+                            vm.operation = false;
+                        }
                     }
                 )
             },
@@ -181,12 +208,31 @@
                     inputPattern: /^\d{8}$/,
                     inputErrorMessage: '快递单号格式不正确'
                 }).then(({ value }) => {
-                    this.$message({
-                        type: 'success',
-                        message: '订单已发货快递单号为' + value
-                    });
-                    this.$router.push({
-                        name:"orderList"
+                    this.orderMsg.orderStatus = "已发货";
+                    this.oStatus = "3"
+                    this.isGoblock = false;
+                    let vm = this;
+                    axios({
+                        url:'/api/changOrderStatus',
+                        method: "post",
+                        responseType:"json",
+                        params: {
+                            id:this.orderMsg.orderId,
+                            status:this.oStatus
+                        }
+                    }).then(function(resule){
+                        vm.uResule = resule.data;
+                        if(vm.uResule == "1"){
+                            vm.$message({
+                                type: 'success',
+                                message: '订单已发货快递单号为' + value
+                            });
+                        }else {
+                            vm.$message({
+                                type: 'info',
+                                message: '操作失败'
+                            });
+                        }
                     })
                 }).catch(() => {
                     this.$message({
@@ -195,20 +241,45 @@
                     });
                 });
             },
-            changStatus(a){
+            changeStatus(){
+                this.oStatus = "5"
                 this.$confirm('此操作会使该订单失效, 是否继续?', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-                    this.$message({
-                        type: 'success',
-                        message: '订单'+ a +'已失效!'
+                    let vm = this;
+                    vm.orderMsg.orderStatus = "已失效";
+                    vm.isGoblock = false;
+                    vm.isDeLblock = false;
+                    vm.isblock = true;
+                    axios({
+                        url:'/api/changOrderStatus',
+                        method: "post",
+                        responseType:"json",
+                        params: {
+                            id:this.orderMsg.orderId,
+                            status:this.oStatus
+                        }
+                    }).then(function(resule){
+                        vm.uResule = resule.data;
+                        if(vm.uResule == "1"){
+                            vm.$message({
+                                type: 'success',
+                                message: '订单'+ vm.orderMsg.orderId +'已失效!'
+                            });
+                        }else {
+                            vm.$message({
+                                type: 'info',
+                                message: '操作失败'
+                            });
+                        }
                     });
-                    this.$router.push({
-                        name:"orderList"
-                    })
+                    // this.$router.push({
+                    //     name:"orderList"
+                    // })
                 });
+
             },
             returnOrderList(){
                 let vm = this;
