@@ -14,19 +14,19 @@
             >
             </el-table-column>
             <el-table-column
-                    prop="name"
+                    prop="spuName"
                     label="商品名称"
                     sortable
             >
             </el-table-column>
             <el-table-column
-                    prop="catalog3"
+                    prop="catalog3Id"
                     label="所属三级分类"
                     sortable
             >
             </el-table-column>
             <el-table-column
-                    prop="description"
+                    prop="spuDescription"
                     label="商品描述"
 
             >
@@ -40,10 +40,10 @@
             >
                 <template v-slot="scope">
                         <el-switch
-                                @change="ajax"
-                                v-model="tableData[scope.$index].hot"
-                                active-value="1"
-                                inactive-value="0"
+                                @change="changeHot(tableData[scope.$index].hot)"
+                                active-value=1
+                                inactive-value=0
+                                v-model="scope.row.hot"
                                 active-text="是"
                                 inactive-text="否">
                         </el-switch>
@@ -64,25 +64,33 @@
         mounted(){
             this.ajax();
 
+
         },
         data() {
             return {
                 value1: true,
-                tableData:[]
+                tableData:[],
+                td:[]
             }
         },
         methods:{
             ajax(){
                 let vm = this;
-                axios.get('/wutong/goods.json','json')
+                let temp = [];
+                axios.get('/api/getGoods')
                 .then(function (response) {
-                    console.log(response.data)
-                    console.log(response)
-                    // console.log(vm);
+                    console.log(response);
+                    // vm.td = response.data;
+                    // temp= response.data;
+                    // console.log(vm.td);
+                    // console.log(temp);
+
                     vm.tableData= response.data;
-                    console.log(vm.tableData);
-                    // this.tableData[1] = response.data[1];
-                })}
+                    // console.log(vm.tableData);
+                })},
+            changeHot(hot) {
+                console.log(hot);
+            }
         }
     };
 </script>

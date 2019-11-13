@@ -15,12 +15,12 @@
                 >
                 </el-table-column>
 
-                <el-table-column
-                        prop="id"
-                        label="编号"
-                        sortable
-                >
-                </el-table-column>
+                <!--<el-table-column-->
+                        <!--prop="id"-->
+                        <!--label="编号"-->
+                        <!--sortable-->
+                <!--&gt;-->
+                <!--</el-table-column>-->
 
                 <el-table-column
                         prop="level"
@@ -31,13 +31,14 @@
                 </el-table-column>
                 <el-table-column label="操作" align="center">
                     <template v-slot="scope">
+                        <el-button v-if="scope.row.level != '三级分类'" type="primary"  size="small" @click="addChildCatalog(scope)"><i class="el-icon-plus"></i> 添加子分类</el-button>
                         <el-button type="primary"  size="small" @click="addCatalog(scope)"><i class="el-icon-plus"></i> 添加</el-button>
                         <el-button type="danger"  size="small" @click="deleteCatalog(scope)"><i class="el-icon-delete" style="font-weight:bold"></i>删除</el-button>
                     </template>
                   </el-table-column>
             </el-table>
 
-            <!-- 模态Form -->
+            <!-- 分类添加模态Form -->
             <el-dialog title="分类添加" :visible.sync="dialogFormVisible">
                 <el-form :model="form">
                     <el-form-item label="分类级别" :label-width="formLabelWidth" >
@@ -146,6 +147,26 @@
 
                 this.form.level = row.level;
                 this.form.pid = row.pid;
+
+                this.dialogFormVisible = true;
+            },
+            // 点击添加子分类后的模态框
+            addChildCatalog(scope){
+                let row = scope.row;
+                let pid = row.id;
+                let level = row.level;
+                console.log(row);
+                if (level == '一级分类') {
+                    this.form.level = '二级分类';
+                }else if (level == '二级分类') {
+                    this.form.level = '三级分类';
+                } else {
+                    this.form.level ='该分类不可添加子分类'
+                }
+
+                this.form.parentName = row.name;
+
+                this.form.pid = pid;
 
                 this.dialogFormVisible = true;
             },

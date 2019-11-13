@@ -1,50 +1,396 @@
 [
   {
-    "id":"1",
-    "level":"1",
-    "name":"生鲜",
-    "children":[{
-      "id":"1_1",
-      "level":"2",
-      "name":"水果",
-      "children":[{
-        "id":"1_1_1",
-        "level":"3",
-        "name":"西瓜"
+    "value": 2,
+    "label": "大家电 小家电",
+    "level": "一级分类",
+    "children": [
+      {
+        "value": 10,
+        "pvalue": 2,
+        "label": "生活电器",
+        "level": "二级分类",
+        "children": [
+          {
+            "value": 53,
+            "pvalue": 10,
+            "label": "手电筒",
+            "level": "三级分类"
+          },
+          {
+            "value": 65,
+            "pvalue": 10,
+            "label": "手电",
+            "level": "三级分类"
+          }
+        ]
       },
-        {
-          "id":"1_1_2",
-          "level":"3",
-          "name":"香蕉"
-        }
-
-      ]
-    }
-
+      {
+        "value": 11,
+        "pvalue": 2,
+        "label": "厨房电器",
+        "level": "二级分类",
+        "children": [
+          {
+            "value": 60,
+            "pvalue": 11,
+            "label": "抽油烟机",
+            "level": "三级分类"
+          }
+        ]
+      },
+      {
+        "value": 12,
+        "pvalue": 2,
+        "label": "其他家电",
+        "level": "二级分类",
+        "children": []
+      }
     ]
   },
   {
-    "id":"2",
-    "level":"1",
-    "name":"电器",
-    "children":[{
-      "id":"2_1",
-      "level":"2",
-      "name":"通讯设备",
-      "children":[{
-        "id":"2_1_1",
-        "level":"3",
-        "name":"智能手机"
+    "value": 3,
+    "label": "电脑 手机 数码",
+    "level": "一级分类",
+    "children": [
+      {
+        "value": 13,
+        "pvalue": 3,
+        "label": "网络设备",
+        "level": "二级分类",
+        "children": []
       },
-        {
-          "id":"2_1_2",
-          "level":"3",
-          "name":"老人机"
-        }
-
-      ]
-    }
-
+      {
+        "value": 14,
+        "pvalue": 3,
+        "label": "电脑整机",
+        "level": "二级分类",
+        "children": [
+          {
+            "value": 54,
+            "pvalue": 14,
+            "label": "笔记本",
+            "level": "三级分类"
+          },
+          {
+            "value": 56,
+            "pvalue": 14,
+            "label": "台式机",
+            "level": "三级分类"
+          },
+          {
+            "value": 64,
+            "pvalue": 14,
+            "label": "一体机",
+            "level": "三级分类"
+          }
+        ]
+      },
+      {
+        "value": 15,
+        "pvalue": 3,
+        "label": "电脑配件",
+        "level": "二级分类",
+        "children": []
+      },
+      {
+        "value": 16,
+        "pvalue": 3,
+        "label": "手机通讯",
+        "level": "二级分类",
+        "children": [
+          {
+            "value": 45,
+            "pvalue": 16,
+            "label": "手机",
+            "level": "三级分类"
+          },
+          {
+            "value": 59,
+            "pvalue": 16,
+            "label": "大哥大",
+            "level": "三级分类"
+          }
+        ]
+      },
+      {
+        "value": 17,
+        "pvalue": 3,
+        "label": "手机配件",
+        "level": "二级分类",
+        "children": []
+      },
+      {
+        "value": 62,
+        "pvalue": 3,
+        "label": "相机",
+        "level": "二级分类",
+        "children": [
+          {
+            "value": 61,
+            "pvalue": 62,
+            "label": "数码相机",
+            "level": "三级分类"
+          },
+          {
+            "value": 62,
+            "pvalue": 62,
+            "label": "光学相机",
+            "level": "三级分类"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": 4,
+    "label": "服装 鞋靴 箱包",
+    "level": "一级分类",
+    "children": [
+      {
+        "value": 18,
+        "pvalue": 4,
+        "label": "男装",
+        "level": "二级分类",
+        "children": []
+      },
+      {
+        "value": 19,
+        "pvalue": 4,
+        "label": "女装",
+        "level": "二级分类",
+        "children": []
+      },
+      {
+        "value": 20,
+        "pvalue": 4,
+        "label": "内衣",
+        "level": "二级分类",
+        "children": []
+      },
+      {
+        "value": 21,
+        "pvalue": 4,
+        "label": "配饰",
+        "level": "二级分类",
+        "children": []
+      },
+      {
+        "value": 22,
+        "pvalue": 4,
+        "label": "功能箱包",
+        "level": "二级分类",
+        "children": []
+      }
+    ]
+  },
+  {
+    "value": 5,
+    "label": "个护 化妆 洗涤",
+    "level": "一级分类",
+    "children": [
+      {
+        "value": 23,
+        "pvalue": 5,
+        "label": "面部护肤",
+        "level": "二级分类",
+        "children": []
+      },
+      {
+        "value": 24,
+        "pvalue": 5,
+        "label": "洗发护发",
+        "level": "二级分类",
+        "children": []
+      },
+      {
+        "value": 25,
+        "pvalue": 5,
+        "label": "身体护肤",
+        "level": "二级分类",
+        "children": []
+      },
+      {
+        "value": 26,
+        "pvalue": 5,
+        "label": "口腔护理",
+        "level": "二级分类",
+        "children": []
+      }
+    ]
+  },
+  {
+    "value": 6,
+    "label": "家居 家装 厨具",
+    "level": "一级分类",
+    "children": [
+      {
+        "value": 27,
+        "pvalue": 6,
+        "label": "家装建材",
+        "level": "二级分类",
+        "children": []
+      },
+      {
+        "value": 28,
+        "pvalue": 6,
+        "label": "家具",
+        "level": "二级分类",
+        "children": []
+      },
+      {
+        "value": 29,
+        "pvalue": 6,
+        "label": "灯具",
+        "level": "二级分类",
+        "children": []
+      },
+      {
+        "value": 30,
+        "pvalue": 6,
+        "label": "厨具",
+        "level": "二级分类",
+        "children": []
+      }
+    ]
+  },
+  {
+    "value": 7,
+    "label": "珠宝礼品 钟表",
+    "level": "一级分类",
+    "children": [
+      {
+        "value": 31,
+        "pvalue": 7,
+        "label": "珠宝首饰",
+        "level": "二级分类",
+        "children": []
+      },
+      {
+        "value": 32,
+        "pvalue": 7,
+        "label": "礼品",
+        "level": "二级分类",
+        "children": []
+      },
+      {
+        "value": 33,
+        "pvalue": 7,
+        "label": "钟表",
+        "level": "二级分类",
+        "children": []
+      }
+    ]
+  },
+  {
+    "value": 8,
+    "label": "图书 音响 办公",
+    "level": "一级分类",
+    "children": [
+      {
+        "value": 34,
+        "pvalue": 8,
+        "label": "音像",
+        "level": "二级分类",
+        "children": []
+      },
+      {
+        "value": 35,
+        "pvalue": 8,
+        "label": "少儿",
+        "level": "二级分类",
+        "children": []
+      },
+      {
+        "value": 36,
+        "pvalue": 8,
+        "label": "经管励志",
+        "level": "二级分类",
+        "children": []
+      },
+      {
+        "value": 37,
+        "pvalue": 8,
+        "label": "生活",
+        "level": "二级分类",
+        "children": []
+      },
+      {
+        "value": 38,
+        "pvalue": 8,
+        "label": "科技",
+        "level": "二级分类",
+        "children": []
+      },
+      {
+        "value": 39,
+        "pvalue": 8,
+        "label": "考试",
+        "level": "二级分类",
+        "children": []
+      },
+      {
+        "value": 40,
+        "pvalue": 8,
+        "label": "办公设备",
+        "level": "二级分类",
+        "children": []
+      }
+    ]
+  },
+  {
+    "value": 9,
+    "label": "母婴 玩具 乐器",
+    "level": "一级分类",
+    "children": [
+      {
+        "value": 41,
+        "pvalue": 9,
+        "label": "奶粉",
+        "level": "二级分类",
+        "children": []
+      },
+      {
+        "value": 42,
+        "pvalue": 9,
+        "label": "尿裤湿巾",
+        "level": "二级分类",
+        "children": []
+      },
+      {
+        "value": 43,
+        "pvalue": 9,
+        "label": "童车童床",
+        "level": "二级分类",
+        "children": []
+      },
+      {
+        "value": 44,
+        "pvalue": 9,
+        "label": "妈妈专区",
+        "level": "二级分类",
+        "children": []
+      },
+      {
+        "value": 45,
+        "pvalue": 9,
+        "label": "玩具乐器",
+        "level": "二级分类",
+        "children": []
+      }
+    ]
+  },
+  {
+    "value": 16,
+    "label": "测试",
+    "level": "一级分类",
+    "children": [
+      {
+        "value": 67,
+        "pvalue": 16,
+        "label": "测试耳机",
+        "level": "二级分类",
+        "children": []
+      }
     ]
   }
 ]
