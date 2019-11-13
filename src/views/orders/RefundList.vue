@@ -4,7 +4,7 @@
             <h2>退货/款单列表</h2>
             <el-table
                     :data="employees"
-                    style="width:100%;margin-bottom: 20px;"
+                    style="width:100%;margin-bottom: 20px;height: 549px;"
                     row-key="id"
                     border>
                 <el-table-column
@@ -21,7 +21,7 @@
                         label="收货人">
                 </el-table-column>
                 <el-table-column
-                        prop="memberPhone"
+                        prop="phone"
                         label="联系电话">
                 </el-table-column>
                 <el-table-column
@@ -37,7 +37,7 @@
                         label="下单时间">
                 </el-table-column>
                 <el-table-column
-                        prop="refundStatus"
+                        prop="rstatus"
                         label="处理状态">
                 </el-table-column>
                 <el-table-column
@@ -74,35 +74,57 @@
                 total:60
             }
         },
-        mounted(){
-            this.ajax();
-        },
-        watch: {
-            // 如果路由有变化，会再次执行该方法
-            '$route': 'ajax'
+        // mounted(){
+        //     this.ajax();
+        // },
+        // watch: {
+        //     // 如果路由有变化，会再次执行该方法
+        //     '$route': 'ajax'
+        // },
+        beforeRouteEnter(to,employees,next){
+            next(vm => {
+                axios({
+                    url:'/api/getRefundList',
+                    method: "get",
+                    responseType:"json",
+                }).then(function(response){
+                    let data = response.data;
+                    vm.employees = data;
+                })
+            })
         },
         methods: {
-            handleClick(index, employees) {
-                console.log(employees.slice(index,index+1));
-                this.$router.push({
-                    name:'refundDetails'
+            // handleClick(index, employees) {
+            //     console.log(employees.slice(index,index+1));
+            //     this.$router.push({
+            //         name:'refundDetails'
+            //     })
+            //
+            // },
+            handleClick(index, a) {
+                let vm1 = this;
+                vm1.$router.push({
+                    name:'refundDetails',
+                    params:{
+                        id:a
+                    }
                 })
-
-            },handleSizeChange(val) {
+            },
+            handleSizeChange(val) {
                 console.log(`每页 ${val} 条`);
             },
             handleCurrentChange(val) {
                 console.log(`当前页: ${val}`);
             }
-            ,ajax(){
-                let vm = this;
-                axios({method:'get',url:"/refundListMessage.json",responseType:"json"}).then(
-                    function (resule) {
-                        // console.log(resule.data.rows);
-                        vm.employees = resule.data.rows;
-                    }
-                )
-            }
+            // ,ajax(){
+            //     let vm = this;
+            //     axios({method:'get',url:"/refundListMessage.json",responseType:"json"}).then(
+            //         function (resule) {
+            //             // console.log(resule.data.rows);
+            //             vm.employees = resule.data.rows;
+            //         }
+            //     )
+            // }
         }
     }
 </script>

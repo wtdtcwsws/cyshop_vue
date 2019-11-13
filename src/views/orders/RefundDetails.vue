@@ -72,9 +72,10 @@
                     <label style="font-weight:bold;">审核意见：</label>
                 </el-col>
                 <el-col :span="20">
-                    <el-radio v-model="radio" label="1">审核通过</el-radio>
-                    <el-radio v-model="radio" label="2">撤销申请</el-radio>
-                    <el-radio v-model="radio" label="3">处理完成</el-radio>
+                    <el-radio v-if="radio0" v-model="radio" label="0">撤销申请</el-radio>
+                    <el-radio v-if="radio1" v-model="radio" label="1">审核通过</el-radio>
+                    <el-radio v-if="radio2" v-model="radio" label="2">处理完成</el-radio>
+                    <el-button v-if="isblock" type="text" disabled>无</el-button>
                 </el-col>
             </el-row>
             <br/>
@@ -101,7 +102,7 @@
                     <label style="font-weight:bold;">&nbsp;</label>
                 </el-col>
                 <el-col :span="20">
-                    <el-button type="primary" @click="onSubmit(radio,form.desc)">确认提交</el-button>
+                    <el-button v-if="submitSee" type="primary" @click="onSubmit(radio)">确认提交</el-button>
                 </el-col>
             </el-row>
         </el-form>
@@ -114,7 +115,12 @@
         name: "RefundDetails",
         data(){
             return {
-                radio: '1',
+                radio: '',
+                radio1:false,
+                radio0:false,
+                radio2:false,
+                isblock:false,
+                submitSee:true,
                 employees:[],
                 form:{
                     desc:""
@@ -129,13 +135,65 @@
             '$route': 'ajax'
         },
         methods:{
-            onSubmit(radioResule,textMessage){
-                console.log(radioResule);
-                console.log(textMessage);
-                this.$message('已提交审核结果');
-                this.$router.push({
-                    name:"refundList"
-                })
+            onSubmit(radioResule){
+                switch (radioResule) {
+                    case "1":
+                        this.employees.refundStatus = "1";
+                        break;
+                    case "2":
+                        this.employees.refundStatus = "2";
+                        break;
+                    case "0":
+                        this.employees.refundStatus = "-1";
+                        break;
+                    default:
+                        this.employees.refundStatus = "0";
+                        break;
+                }
+
+                this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    console.log("this.employees.refundStatus:"+this.employees.refundStatus);
+                    let vm = this;
+                    if(vm.employees.refundStatus != "0"){
+                        axios({method: 'post',
+                            url: "/api/changeRefundStatus",
+                            responseType: "json",
+                            params: {
+                                id:vm.employees.orderId,
+                                status:vm.employees.refundStatus
+                            }}).then(function (resule) {
+                            if(resule.data == "1"){
+                                vm.$message('已提交操作');
+
+                                // 判断更改后的按钮
+                                switch (vm.employees.refundStatus) {
+                                    case "1":
+                                        vm.radio0 = true;
+                                        vm.radio2 = true;
+                                        break;
+                                    case "2":
+                                        vm.radio0 = true;
+                                        break;
+                                    default:
+                                        vm.radio0 = false;
+                                        vm.radio1 = false;
+                                        vm.radio2 = false;
+                                        vm.isblock = true;
+                                        vm.submitSee = false;
+                                        break;
+                                }
+                            }else{
+                                vm.$message('提交失败');
+                            }
+                        })
+                    }else{
+                        vm.$message('请选择审核意见');
+                    }
+                });
             },
             returnRefundList(){
                 this.$router.push({
@@ -144,12 +202,24 @@
             },
             ajax(){
                 let vm = this;
-                axios({method:'get',url:"/refundMessage.json",responseType:"json"}).then(
+                axios({method:'post',
+                    url:"/api/getRefundDetails",
+                    responseType:"json",
+                    params: {
+                        id: vm.$route.params.id
+                }}).then(
                     function (resule) {
-                        // console.log(resule.data.rows);
-                        // vm.employees = resule.data.rows;
-                        console.log(resule.data.row);
-                        vm.employees = resule.data.row;
+                        vm.employees = resule.data;
+                        if(vm.employees.rstatus == "0"){
+                            vm.radio1 = true,
+                            vm.radio0 = true
+                        }else if(vm.employees.rstatus == "1"){
+                            vm.radio0 = true,
+                            vm.radio2 = true
+                        }else{
+                            vm.isblock = true,
+                            vm.submitSee = false
+                        }
                     }
                 )
             }
