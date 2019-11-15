@@ -41,9 +41,9 @@
                 <template v-slot="scope">
                         <el-switch
                                 @change="changeHot(tableData[scope.$index].hot)"
-                                active-value=1
-                                inactive-value=0
-                                v-model="scope.row.hot"
+                                :active-value="1"
+                                :inactive-value="0"
+                                v-model="tableData[scope.$index].hot"
                                 active-text="是"
                                 inactive-text="否">
                         </el-switch>
@@ -61,7 +61,7 @@
     export default {
 
         name: "list",
-        mounted(){
+        created(){
             this.ajax();
 
 

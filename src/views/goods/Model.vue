@@ -66,10 +66,23 @@
 
                 </el-form-item>
                 <el-form-item label="属性名" :label-width="formLabelWidth">
-                    <el-input v-model="form.attri" autocomplete="off" style="width: 90%"></el-input>
+                    <el-button type="text" @click="attriFormVisable = true">属性添加</el-button>
+                    <br>
+                    <el-select v-model="form.attriNames" multiple placeholder="请选择属性">
+                        <el-option
+                                v-for="item in form.attris"
+                                :key="item.value"
+                                :label="item.label"
+                                :value="item.value">
+                        </el-option>
+                    </el-select>{{form.attriNames}}
                 </el-form-item>
                 <el-form-item label="属性值" :label-width="formLabelWidth">
-                    <el-input v-model="form.value" autocomplete="off" style="width: 90%"></el-input>
+                    <el-button type="text" @click="valueFormVisable = true">属性值添加</el-button>
+                    <br>
+                </el-form-item>
+                <el-form-item label="属性组合" :label-width="formLabelWidth">
+                    <el-input :key="match.value" :value="match.attri+':'+match.value" v-for="match in form.matchs" autocomplete="off" disabled style="width: 90%"></el-input>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
@@ -77,6 +90,43 @@
                 <el-button type="primary" @click="addSuccess">确 定</el-button>
             </div>
         </el-dialog>
+        <!--属性添加模态框-->
+        <el-dialog title="属性添加" :visible.sync="attriFormVisable">
+            <el-form :model="attriForm">
+                <el-form-item label="属性名" :label-width="formLabelWidth">
+                    <el-input v-model="attriForm.attri" autocomplete="off"></el-input>
+                </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="attriFormVisable = false">取 消</el-button>
+                <el-button type="primary" @click="addAttri">确 定</el-button>
+            </div>
+        </el-dialog>
+
+        <!--属性值添加模态框-->
+        <el-dialog title="属性值添加" :visible.sync="valueFormVisable">
+            <el-form :model="valueForm">
+                <!--使用下拉框展示属性名-->
+                <el-form-item label="属性名" :label-width="formLabelWidth">
+                    <el-select v-model="valueForm.attri" placeholder="请选择属性名">
+                        <el-option
+                                v-for="item in form.attris"
+                                :key="item.value"
+                                :label="item.label"
+                                :value="item.value">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="属性值" :label-width="formLabelWidth">
+                    <el-input v-model="valueForm.value" autocomplete="off"></el-input>
+                </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="valueFormVisable = false">取 消</el-button>
+                <el-button type="primary" @click="addValue">确 定</el-button>
+            </div>
+        </el-dialog>
+
 
     </div>
 </template>
@@ -92,6 +142,16 @@
         name: "model",
         data() {
             return {
+                attriFormVisable: false,
+                valueFormVisable: false,
+                attriForm: {
+                    attri:''
+                },
+                valueForm: {
+                    value:'',
+                    attri:''
+
+                },
                 options:[],
                 value: [],
                 tableData: [
@@ -115,10 +175,16 @@
                     }
                 ],
                 dialogFormVisible: false,
+                // 模态框表单
                 form: {
                     name: '',
                     catalog: '',
-                    attri: '',
+                    attris: [
+
+                    ],
+                    attriNames: [],
+                    // 组合
+                    matchs: [],
                     value: ''
                 },
                 formLabelWidth: '80px'
@@ -151,7 +217,7 @@
             },
             addModel() {
                 this.form.name='',
-                this.form.attri='',
+                // this.form.attri='',
                 this.form.value=''
 
                 this.dialogFormVisible = true;
@@ -176,6 +242,15 @@
                     .then(function (response) {
                         if (response.data == '1') {
                             vm.successMessage('添加成功！');
+                            axios({
+                                method: 'post',
+                                url: "/api/addSkuAttri",
+                                responseType: "json",
+                                params:{
+                                    attris: JSON.stringify(vm.form.attriNames),
+                                    matchs: JSON.stringify(vm.form.matchs)
+                                }
+                            });
                         } else {
                             vm.cancelMessage('添加失败');
                         }
@@ -245,6 +320,32 @@
                         console.log(response.data);
 
                     })
+            },
+            //添加属性名
+            addAttri() {
+                //向属性选择下拉框添加属性
+                this.form.attris.push({
+                    //从二层模态框中获取属性名
+                    label: this.attriForm.attri,
+                    value: this.attriForm.attri
+                });
+                //把属性名显示在下拉框中
+                this.form.attriNames.push(this.attriForm.attri);
+                console.log(this.form.matchs);
+                //清除二层模态框中的内容
+                this.attriForm.attri = '';
+                this.attriFormVisable = false;
+
+            },
+            addValue() {
+                //属性值与属性组合
+                this.form.matchs.push({
+                    value:this.valueForm.value,
+                    attri:this.valueForm.attri
+                });
+                this.valueForm.value = '';
+                this.valueForm.attri = '';
+                this.valueFormVisable = false;
             }
 
 
